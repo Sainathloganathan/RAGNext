@@ -1,0 +1,97 @@
+# 🛡️ RAGNext — Version-Aware Document Intelligence Engine
+
+> **Problem Statement ID:** `SH-SVA-04`  
+> **Team Name:** `Cyber Knights`  
+> **Core Principle:** *"Find the right information, from the right document version, with verifiable evidence."*
+
+---
+
+## 📌 Executive Summary
+
+Organizations maintain multiple versions of critical policies, manuals, standard operating procedures, and compliance documents. Conventional vector similarity search blindly retrieves clauses from older or superseded versions based on cosine similarity alone.
+
+**RAGNext** solves this by implementing an explicit **Version-Aware Retrieval-Augmented Generation (RAG)** engine. It enforces temporal validity, tracks document revision lineages (`v1.0` ➔ `v2.0` ➔ `v3.0`), detects conflicting active versions, and grounds every AI answer with verifiable page citations and exact supporting excerpts.
+
+---
+
+## 🏗️ Architecture & Technology Stack
+
+- **Frontend:** React 18, Vite, React Router 6, Bootstrap 5, Lucide React icons, custom design system (Clean White + Emerald Green Accent).
+- **Backend:** Node.js, Express.js (ES modules), REST API architecture, centralized error handling, and file validation.
+- **Metadata Database:** PostgreSQL adapter with SQL migrations + zero-friction local persistent SQLite / JSON fallback.
+- **Vector Database:** Local embedded persistent vector storage with ChromaDB API compatibility.
+- **Document Processing:** PDF (page-aware text extraction), DOCX (`mammoth`), PPTX, and TXT/Markdown.
+- **Local AI Inference:** Ollama local integration (`llama3.2` / `nomic-embed-text`) + deterministic grounded extractive synthesis fallback for 100% offline operation.
+
+---
+
+## 🚀 Quickstart & Setup Guide
+
+### 1. Prerequisites
+- Node.js v18+ (tested on Node v24)
+- (Optional) [Ollama](https://ollama.com) for local LLM inference (`ollama run llama3.2`)
+
+### 2. Installation
+Clone the repository and install all dependencies:
+
+```bash
+# Install backend dependencies
+cd backend
+npm install
+
+# Install frontend dependencies
+cd ../frontend
+npm install
+```
+
+### 3. Running the Application
+
+**Option A: Run Both Services Concurrently (Root)**
+```bash
+npm run start:backend
+# In a separate terminal:
+npm run start:frontend
+```
+
+**Option B: Independent Execution**
+- Backend: `http://localhost:5000` (`node src/server.js` in `backend/`)
+- Frontend: `http://localhost:5173` (`npm run dev` in `frontend/`)
+
+---
+
+## 🧪 Automated Testing Suite
+
+To run the automated RAG verification suite covering the hackathon test criteria:
+
+```bash
+npm test
+```
+
+### What is tested:
+1. Document metadata validation and repository storage.
+2. Ingestion of 3 document revisions (`v1.0` = 15 days, `v2.0` = 18 days, `v3.0` = 20 days).
+3. Current-version query strictly citing active `v3.0` (20 days) and rejecting superseded versions.
+4. Historical query retrieving `v2.0` (18 days) with explicit historical labeling.
+5. Missing evidence detection returning honest insufficient evidence reports.
+6. Conflicting active version detection flagging conflicts rather than silently guessing.
+7. Deletion cleanup of metadata and vector embeddings.
+
+---
+
+## 🖥️ Live Hackathon Demonstration Workflow
+
+1. Open **[http://localhost:5173](http://localhost:5173)**.
+2. On the **Dashboard**, click **"Seed Demo Dataset"** to load the 3-version Leave Policy dataset.
+3. Open **Document Library** ➔ Click **"Versions"** on *Annual Leave Policy Manual* to inspect the version lineage (`v1.0 Superseded`, `v2.0 Superseded`, `v3.0 Active`).
+4. Navigate to **AI Document Chat**:
+   - Query: `"What is the current annual leave allowance?"` ➔ Answers **20 days** citing **v3.0, Page 1**.
+   - Query: `"What was the allowance in version 2?"` ➔ Answers **18 days** citing **v2.0 (Historical)**.
+   - Query: `"Where does the document describe maternity leave?"` ➔ Accurately reports missing evidence.
+5. Navigate to **Settings** to inspect local AI, vector storage, and database connection statuses.
+
+---
+
+## 🔒 Security & Offline-First Design
+- Uploaded filenames are sanitized and stored using cryptographic hashes (`doc_<timestamp>_<hex>.<ext>`).
+- File MIME types, extensions, and size limits (25MB) are strictly validated.
+- All retrieval, embedding, and inference operations run locally without external cloud telemetry or mandatory paid APIs.
