@@ -1,0 +1,1469 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RAGNext — Version-Aware Document Intelligence & Retrieval Engine</title>
+  <meta name="description" content="Next-generation Version-Aware Retrieval-Augmented Generation (RAG) system. Ingest multi-format documents, eliminate hallucination and outdated answers, and deliver structured outputs with verified page citations and evidence." />
+  
+  <!-- Google Fonts: Newsreader (Editorial Serif) & Plus Jakarta Sans (Clean Modern Sans) & JetBrains Mono (Code/Metadata) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="editorial-theme">
+
+  <!-- Top Announcement Bar / Editorial Masthead Header -->
+  <div class="top-ribbon" id="topRibbon">
+    <div class="ribbon-inner">
+      <span class="ribbon-badge">WHITE PAPER & ARCHITECTURE SPEC</span>
+      <span class="ribbon-text">Introducing RAGNext: Solving Knowledge Sprawl & Version Drift in Enterprise RAG Systems</span>
+      <a href="#interactiveSandbox" class="ribbon-link">Launch Live Simulator &rarr;</a>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="editorial-header" id="mainHeader">
+    <div class="header-container">
+      <div class="brand-group">
+        <a href="#hero" class="brand-logo" id="navBrandLogo">
+          <div class="logo-mark">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="2" width="24" height="24" rx="6" fill="#1E40AF" fill-opacity="0.1" stroke="#1E40AF" stroke-width="2"/>
+              <path d="M8 8H20M8 13H16M8 18H20" stroke="#1E40AF" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="19" cy="17" r="4.5" fill="#2563EB" stroke="#FFFFFF" stroke-width="1.5"/>
+              <path d="M17.5 17L18.5 18L20.5 16" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="brand-text-block">
+            <span class="brand-name">RAG<span class="brand-accent">Next</span></span>
+            <span class="brand-tagline">Version-Aware Document Intelligence</span>
+          </div>
+        </a>
+        <div class="editorial-vol-tag">
+          <span>VOL. 01</span>
+          <span class="separator">/</span>
+          <span>EDUTORIAL EDITION</span>
+        </div>
+      </div>
+
+      <nav class="editorial-nav" id="mainNav">
+        <ul class="nav-links">
+          <li><a href="#problemSolution" class="nav-link" id="navLinkProblem">Problem & Solution</a></li>
+          <li><a href="#ideaOverview" class="nav-link" id="navLinkOverview">System Overview</a></li>
+          <li><a href="#workflowSection" class="nav-link" id="navLinkWorkflow">6-Stage Workflow</a></li>
+          <li><a href="#interactiveSandbox" class="nav-link" id="navLinkSandbox">Live Sandbox</a></li>
+          <li><a href="#targetUsers" class="nav-link" id="navLinkUsers">Industries & Use Cases</a></li>
+          <li><a href="#roiCalculator" class="nav-link" id="navLinkRoi">Impact Calculator</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn-secondary-editorial" id="btnPresentationMode" title="Toggle Presentation View">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <span>Pitch View</span>
+        </button>
+        <a href="#interactiveSandbox" class="btn-primary-editorial" id="btnTryDemo">
+          <span>Try Interactive Demo</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section with Editorial Cover Aesthetics -->
+  <section class="hero-section" id="hero">
+    <div class="hero-background-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="container hero-container">
+      
+      <!-- Top Editorial Classification -->
+      <div class="editorial-meta-header">
+        <div class="meta-tag"><span class="pulse-dot"></span> ARCHITECTURAL BLUEPRINT & WHITE PAPER</div>
+        <div class="meta-date">EST. 2025 · MULTI-FORMAT INTELLIGENCE · ISO/IEC AUDIT COMPLIANT</div>
+        <div class="meta-status">STATUS: <strong class="text-blue">READY FOR PRODUCTION DEPLOYMENT</strong></div>
+      </div>
+
+      <div class="hero-main-grid">
+        <div class="hero-text-column">
+          <div class="editorial-chapter-pill">
+            <span class="chapter-num">CHAPTER 00</span>
+            <span class="chapter-title">THE TRUST PARADIGM IN ENTERPRISE AI</span>
+          </div>
+
+          <h1 class="hero-headline" id="heroTitle">
+            Never Retrieve <br/>
+            <span class="serif-italic serif-gradient">Outdated Knowledge</span> Again.
+          </h1>
+
+          <p class="hero-subhead">
+            Standard AI chatbots stumble on revisions, retrieve deprecated rules, and hallucinate phantom answers. 
+            <strong>RAGNext</strong> is the first <em>Version-Aware Document Intelligence Pipeline</em> that reads multi-format files, tracks revision lineages across time, and delivers instant, hallucination-free answers backed by verifiable page-level evidence.
+          </p>
+
+          <!-- Key Highlights Quick Bar -->
+          <div class="hero-feature-tags">
+            <span class="feature-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Multi-Format: PDF, DOCX, PPT, TXT</span>
+            <span class="feature-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Temporal Version Verification (v1.0 &rarr; v3.0)</span>
+            <span class="feature-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Source &amp; Page Citation Grounding</span>
+          </div>
+
+          <!-- Hero Action CTAs -->
+          <div class="hero-cta-group">
+            <a href="#interactiveSandbox" class="btn-hero-primary" id="btnHeroTest">
+              <span>Test Real-Time Query Simulator</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#workflowSection" class="btn-hero-secondary" id="btnHeroExplore">
+              <span>View 6-Step Workflow</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+            </a>
+          </div>
+
+          <!-- Quick Metrics Ribbon -->
+          <div class="hero-stat-row">
+            <div class="hero-stat-item">
+              <span class="stat-number">100%</span>
+              <span class="stat-label">Page-Grounded Citations</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="hero-stat-item">
+              <span class="stat-number">0%</span>
+              <span class="stat-label">Deprecated Version Drift</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="hero-stat-item">
+              <span class="stat-number">10x</span>
+              <span class="stat-label">Faster Decision Turnaround</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Interactive Side-by-Side Dual Engine Visualizer -->
+        <div class="hero-interactive-column">
+          <div class="card-editorial-frame" id="heroLiveComparisonCard">
+            <div class="frame-header">
+              <div class="frame-label-group">
+                <span class="frame-dot red"></span>
+                <span class="frame-dot yellow"></span>
+                <span class="frame-dot green"></span>
+                <span class="frame-title">LIVE RETRIEVAL TESTBENCH: NAIVE RAG VS RAGNEXT</span>
+              </div>
+              <div class="toggle-switch-group">
+                <button class="engine-toggle-btn active" id="toggleRagNext" data-mode="ragnext">RAGNext (Version-Aware)</button>
+                <button class="engine-toggle-btn" id="toggleLegacy" data-mode="legacy">Naive RAG (Legacy)</button>
+              </div>
+            </div>
+
+            <div class="frame-body">
+              <!-- Prompt Simulation Box -->
+              <div class="sim-prompt-box">
+                <span class="prompt-icon">Q:</span>
+                <span class="prompt-text" id="heroQueryText">"What is the daily maximum allowance for overseas travel accommodation in 2025?"</span>
+              </div>
+
+              <!-- Animated Engine Processing State -->
+              <div class="engine-result-card" id="engineResultCard">
+                <!-- RAGNext Mode (Default) -->
+                <div class="ragnext-view" id="heroRagNextView">
+                  <div class="version-banner verified">
+                    <div class="version-badge">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                      <span>LATEST VERSION VERIFIED: <strong>v3.0 (Active · Jan 2025)</strong></span>
+                    </div>
+                    <span class="superseded-badge">Superseded: v1.0 (2021) & v2.0 (2023) ignored</span>
+                  </div>
+
+                  <div class="answer-content-block">
+                    <p class="answer-text">
+                      According to the updated 2025 Travel Policy, the maximum allowance for overseas accommodation is <strong>$280 USD / night</strong> for Tier-1 cities and <strong>$210 USD / night</strong> for Tier-2 cities, with prior manager approval required for peak seasons.
+                    </p>
+                  </div>
+
+                  <div class="structured-evidence-pillbox">
+                    <div class="evidence-pill">
+                      <span class="pill-k">Source:</span>
+                      <span class="pill-v">Global_Travel_Policy_2025.pdf</span>
+                    </div>
+                    <div class="evidence-pill">
+                      <span class="pill-k">Version:</span>
+                      <span class="pill-v text-green">v3.0 (Valid)</span>
+                    </div>
+                    <div class="evidence-pill">
+                      <span class="pill-k">Page:</span>
+                      <span class="pill-v">Page 18, Section 4.2</span>
+                    </div>
+                    <div class="evidence-pill confidence">
+                      <span class="pill-k">Grounding:</span>
+                      <span class="pill-v">99.8% Verifiable</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Legacy RAG Mode (Hidden initially) -->
+                <div class="legacy-view" id="heroLegacyView" style="display: none;">
+                  <div class="version-banner warning">
+                    <div class="version-badge">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                      <span>OUTDATED RETRIEVAL: <strong>v1.0 (Deprecated · Oct 2021)</strong></span>
+                    </div>
+                    <span class="superseded-badge text-red">Critical Error: Matched oldest doc similarity</span>
+                  </div>
+
+                  <div class="answer-content-block legacy">
+                    <p class="answer-text text-strike">
+                      The daily overseas accommodation rate is capped at <strong>$150 USD / night</strong> across all global destinations without regional tiering.
+                    </p>
+                    <div class="legacy-danger-alert">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                      <span><strong>Business Risk:</strong> Employee reimbursed at 46% below actual policy, causing operational friction & compliance audit flags.</span>
+                    </div>
+                  </div>
+
+                  <div class="structured-evidence-pillbox legacy">
+                    <div class="evidence-pill red">
+                      <span class="pill-k">Source:</span>
+                      <span class="pill-v">Travel_Rules_Archive_2021.docx</span>
+                    </div>
+                    <div class="evidence-pill red">
+                      <span class="pill-k">Version:</span>
+                      <span class="pill-v">v1.0 (Expired)</span>
+                    </div>
+                    <div class="evidence-pill red">
+                      <span class="pill-k">Grounding:</span>
+                      <span class="pill-v">No Version Check</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Interactive Prompt Selector for Live Demo in Hero -->
+              <div class="hero-prompt-suggestions">
+                <span class="suggestion-label">Try another test case:</span>
+                <button class="chip-prompt" data-query="hydraulic" data-answer-ragnext="Hydraulic press maximum operating pressure is 350 bar (amended from 450 bar in v1.2 due to safety bulletin #89)." data-source="Press_Safety_Manual_v2.4.pdf" data-version="v2.4" data-page="Page 42" data-legacy-ans="Hydraulic press limit is 450 bar." data-legacy-src="Press_Manual_2019_v1.2.pdf">⚙️ Hydraulic Press Pressure Limit</button>
+                <button class="chip-prompt" data-query="clinical" data-answer-ragnext="Administer 500mg Ceftriaxone IV within 60 mins of triage (updated per 2024 Sepsis Guidelines, replacing 2020 protocol)." data-source="Clinical_Sepsis_SOP_v3.1.pdf" data-version="v3.1" data-page="Page 09" data-legacy-ans="Administer 1000mg Ampicillin IV within 3 hours." data-legacy-src="Sepsis_Guideline_2020_v1.0.pdf">🏥 Sepsis Triage Protocol</button>
+              </div>
+            </div>
+            
+            <div class="frame-footer">
+              <div class="status-indicator">
+                <span class="dot-online"></span> Real-time Graph Vector Index Active
+              </div>
+              <a href="#interactiveSandbox" class="footer-link">Open Full Interactive Playground &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CHAPTER 01: EXISTING PROBLEM VS PROPOSED SOLUTION (SLIDE 1) -->
+  <section class="section-editorial py-96" id="problemSolution">
+    <div class="container">
+      
+      <div class="section-header-editorial text-center">
+        <div class="editorial-chapter-pill center">
+          <span class="chapter-num">CHAPTER 01</span>
+          <span class="chapter-title">THE DOCUMENT CRISIS & THE PARADIGM SHIFT</span>
+        </div>
+        <h2 class="section-title">
+          Why Traditional Enterprise AI <br/>
+          <span class="serif-italic serif-gradient">Fails on Document Revisions</span>
+        </h2>
+        <p class="section-lead">
+          Slide 1 Breakdown: Organizations store thousands of documents across scattered silos. When multiple versions exist, naive vector search blindly picks based on semantic similarity rather than temporal validity.
+        </p>
+      </div>
+
+      <!-- Problem vs Solution Interactive Toggle / Dual Editorial Ledger -->
+      <div class="editorial-ledger-grid">
+        
+        <!-- Left Ledger: The Existing Problem (Slide 1 Left) -->
+        <div class="ledger-card problem-ledger" id="cardProblemLedger">
+          <div class="ledger-header">
+            <div class="ledger-tag problem-tag">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+              <span>EXISTING PROBLEM</span>
+            </div>
+            <h3 class="ledger-title">The Danger of Naive Document Retrieval</h3>
+            <p class="ledger-desc">What happens when enterprises rely on basic vector similarity without revision awareness.</p>
+          </div>
+
+          <div class="ledger-body">
+            <ul class="ledger-list problem-list">
+              <li class="ledger-item">
+                <div class="item-icon red"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
+                <div class="item-content">
+                  <h4>Many Documents Stored in Different Places</h4>
+                  <p>PDFs, Word docs, PowerPoint decks, and text files scattered across SharePoint, Google Drive, email threads, and local drives with zero centralized reconciliation.</p>
+                </div>
+              </li>
+
+              <li class="ledger-item">
+                <div class="item-icon red"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
+                <div class="item-content">
+                  <h4>The Same Document Has Many Versions</h4>
+                  <p>Files like <code>Policy_Final.pdf</code>, <code>Policy_Final_v2.pdf</code>, and <code>Policy_2025_Revised_FINAL.docx</code> coexist. Standard AI cannot distinguish which is legally binding.</p>
+                </div>
+              </li>
+
+              <li class="ledger-item">
+                <div class="item-icon red"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
+                <div class="item-content">
+                  <h4>Old Information Can Be Retrieved</h4>
+                  <p>High cosine similarity to an outdated 2018 clause tricks naive vector embeddings into serving obsolete numbers, expired warranties, and deprecated codes.</p>
+                </div>
+              </li>
+
+              <li class="ledger-item">
+                <div class="item-icon red"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
+                <div class="item-content">
+                  <h4>Finding the Correct Document Takes Excessive Time</h4>
+                  <p>Employees waste an average of 4.5 hours every week manually cross-referencing change logs and asking colleagues which version is current.</p>
+                </div>
+              </li>
+
+              <li class="ledger-item">
+                <div class="item-icon red"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
+                <div class="item-content">
+                  <h4>Wrong Information Leads to Catastrophic Decisions</h4>
+                  <p>Engineering safety violations, medical dosing errors, compliance fines, and fiscal budget deficits caused by acting on obsolete specs.</p>
+                </div>
+              </li>
+
+              <li class="ledger-item">
+                <div class="item-icon red"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
+                <div class="item-content">
+                  <h4>Users Do Not Trust the AI Answer</h4>
+                  <p>When an LLM produces black-box answers without clickable page citations or proof of version recency, adoption drops to near zero.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="ledger-footer problem-footer">
+            <span class="danger-stat">Consequence: High operational risk & wasted enterprise labor</span>
+          </div>
+        </div>
+
+        <!-- Right Ledger: The Proposed Solution (Slide 1 Right) -->
+        <div class="ledger-card solution-ledger" id="cardSolutionLedger">
+          <div class="ledger-header">
+            <div class="ledger-tag solution-tag">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              <span>PROPOSED SOLUTION: RAGNEXT</span>
+            </div>
+            <h3 class="ledger-title">Version-Aware Grounded Intelligence</h3>
+            <p class="ledger-desc">How RAGNext guarantees precision, temporal freshness, and undeniable source evidence.</p>
+          </div>
+
+          <div class="ledger-body">
+            <ul class="ledger-list solution-list">
+              <li class="ledger-item">
+                <div class="item-icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="item-content">
+                  <h4>Find the Right Document Quickly</h4>
+                  <p>Unified multi-format parser ingests PDF, DOCX, PPT, and TXT instantly with high-speed parallel chunking and semantic clustering.</p>
+                </div>
+              </li>
+
+              <li class="ledger-item">
+                <div class="item-icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="item-content">
+                  <h4>Find & Verify the Latest Document Version</h4>
+                  <p>Autonomous temporal lineage resolver detects document versions (v1.0 &rarr; v2.0 &rarr; v3.0), marks superseded nodes, and strictly queries the active valid version.</p>
+                </div>
+              </li>
+
+              <li class="ledger-item">
+                <div class="item-icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="item-content">
+                  <h4>Deeply Understand Document Content</h4>
+                  <p>Extracts structured tables, header hierarchies, bulleted guidelines, and complex technical footnotes with rich semantic awareness.</p>
+                </div>
+              </li>
+
+              <li class="ledger-item">
+                <div class="item-icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="item-content">
+                  <h4>Find the Most Useful & Precise Information</h4>
+                  <p>Hybrid dense-sparse vector reranking prioritizes exact clause matches and filters out noise to synthesize concise, context-rich summaries.</p>
+                </div>
+              </li>
+
+              <li class="ledger-item">
+                <div class="item-icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="item-content">
+                  <h4>Give a Clear and Correct Answer Every Time</h4>
+                  <p>Natural language synthesis formatted for human decision-makers, with key bullet points, quantitative thresholds, and action items.</p>
+                </div>
+              </li>
+
+              <li class="ledger-item">
+                <div class="item-icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="item-content">
+                  <h4>Show the Exact Source, Page & Evidence Snippet</h4>
+                  <p>Every claim is accompanied by an audit-ready citation pill: Document Name, Version Tag, Exact Page #, and Highlighted Evidence Box.</p>
+                </div>
+              </li>
+
+              <li class="ledger-item">
+                <div class="item-icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="item-content">
+                  <h4>Reduce Wrong & Outdated Answers to Absolute Zero</h4>
+                  <p>Strict hallucination guardrails reject ungrounded queries and explicitly warn users if an answer relies on an older version when no newer update exists.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="ledger-footer solution-footer">
+            <span class="success-stat">Outcome: 100% Verifiable, Audit-Grade Enterprise Intelligence</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CHAPTER 02: IDEA OVERVIEW (SLIDE 2) -->
+  <section class="section-editorial bg-alt py-96" id="ideaOverview">
+    <div class="container">
+      
+      <div class="section-header-editorial text-center">
+        <div class="editorial-chapter-pill center">
+          <span class="chapter-num">CHAPTER 02</span>
+          <span class="chapter-title">SYSTEM ARCHITECTURE & CAPABILITIES</span>
+        </div>
+        <h2 class="section-title">
+          Idea Overview: <br/>
+          <span class="serif-italic serif-gradient">The Smart Engine for Document Comprehension</span>
+        </h2>
+        <p class="section-lead">
+          Slide 2 Breakdown: An end-to-end intelligent platform engineered to transform static corporate files into a live, interactive, self-updating knowledge base.
+        </p>
+      </div>
+
+      <!-- 8-Card Editorial Feature Grid (Mapped to Slide 2 Bullet Points) -->
+      <div class="overview-cards-grid">
+        
+        <!-- 1. Smart System for Understanding Documents -->
+        <div class="editorial-card">
+          <div class="card-num-watermark">01</div>
+          <div class="card-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E40AF" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <h3 class="card-heading">Smart System for Document Understanding</h3>
+          <p class="card-body-text">
+            Employs multi-modal cognitive parsers that read headers, tables, diagrams, and footnotes with contextual awareness rather than naive line splitting.
+          </p>
+          <div class="card-meta-tag">Deep Semantic Parser</div>
+        </div>
+
+        <!-- 2. Users Upload Different Types of Documents -->
+        <div class="editorial-card">
+          <div class="card-num-watermark">02</div>
+          <div class="card-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E40AF" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          </div>
+          <h3 class="card-heading">Multi-Format Ingestion Engine</h3>
+          <p class="card-body-text">
+            Seamlessly accepts <strong>PDF, DOCX, PPT, and TXT</strong> files. Automatically normalizes formatting differences into a unified vector representation.
+          </p>
+          <div class="format-badges">
+            <span class="badge-fmt pdf">PDF</span>
+            <span class="badge-fmt docx">DOCX</span>
+            <span class="badge-fmt ppt">PPT</span>
+            <span class="badge-fmt txt">TXT</span>
+          </div>
+        </div>
+
+        <!-- 3. Reads & Understands Content -->
+        <div class="editorial-card">
+          <div class="card-num-watermark">03</div>
+          <div class="card-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E40AF" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <h3 class="card-heading">Extracts & Comprehends Full Context</h3>
+          <p class="card-body-text">
+            Transforms raw unstructured paragraphs into structured knowledge graphs, maintaining semantic relationships across complex technical manuals.
+          </p>
+          <div class="card-meta-tag">Hierarchical Chunking</div>
+        </div>
+
+        <!-- 4. Finds Information Related to the Question -->
+        <div class="editorial-card">
+          <div class="card-num-watermark">04</div>
+          <div class="card-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E40AF" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+          <h3 class="card-heading">Precise Intent Retrieval & Reranking</h3>
+          <p class="card-body-text">
+            Maps user natural language queries against dense embeddings and sparse keyword indices, reranking candidate chunks with cross-encoder accuracy.
+          </p>
+          <div class="card-meta-tag">Hybrid Search + Reranker</div>
+        </div>
+
+        <!-- 5. Checks the Correct Document Version -->
+        <div class="editorial-card highlight-border">
+          <div class="card-num-watermark">05</div>
+          <div class="card-icon-wrap blue-bg">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+          </div>
+          <h3 class="card-heading">Autonomous Version Lineage Checker</h3>
+          <p class="card-body-text">
+            <strong>The Core Innovation:</strong> Indexes version numbers, timestamps, and superseding chains (v1.0 &rarr; v2.0 &rarr; v3.0). Guarantees active version retrieval.
+          </p>
+          <div class="version-flow-mini">
+            <span class="v-step old">v1.0</span>
+            <span class="v-arrow">&rarr;</span>
+            <span class="v-step old">v2.0</span>
+            <span class="v-arrow">&rarr;</span>
+            <span class="v-step active">v3.0 (Active)</span>
+          </div>
+        </div>
+
+        <!-- 6. Gives Answers Based on the Documents -->
+        <div class="editorial-card">
+          <div class="card-num-watermark">06</div>
+          <div class="card-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E40AF" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </div>
+          <h3 class="card-heading">Zero-Hallucination Direct Synthesis</h3>
+          <p class="card-body-text">
+            Constrained generation model only outputs facts explicitly verified in retrieved passages, preventing made-up policies or hallucinated specs.
+          </p>
+          <div class="card-meta-tag">Strict Guardrails</div>
+        </div>
+
+        <!-- 7. Shows Source & Supporting Information -->
+        <div class="editorial-card">
+          <div class="card-num-watermark">07</div>
+          <div class="card-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E40AF" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <h3 class="card-heading">Audit-Ready Source & Evidence Inspector</h3>
+          <p class="card-body-text">
+            Outputs structured metadata pills including Document Title, Active Version, Exact Page Number, and a clickable Evidence Excerpt viewer.
+          </p>
+          <div class="card-meta-tag">Transparent Grounding</div>
+        </div>
+
+        <!-- 8. Helps Users Make Faster Decisions -->
+        <div class="editorial-card">
+          <div class="card-num-watermark">08</div>
+          <div class="card-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E40AF" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <h3 class="card-heading">Accelerates High-Stakes Decisions</h3>
+          <p class="card-body-text">
+            Reduces document retrieval and verification latency from 30+ minutes down to <strong>sub-800 milliseconds</strong>, enabling agile operational execution.
+          </p>
+          <div class="card-meta-tag">Sub-Second Latency</div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CHAPTER 03: THE 6-STAGE WORKFLOW (SLIDE 3) -->
+  <section class="section-editorial py-96" id="workflowSection">
+    <div class="container">
+      
+      <div class="section-header-editorial text-center">
+        <div class="editorial-chapter-pill center">
+          <span class="chapter-num">CHAPTER 03</span>
+          <span class="chapter-title">THE 6-STAGE PIPELINE ARCHITECTURE</span>
+        </div>
+        <h2 class="section-title">
+          The End-to-End <br/>
+          <span class="serif-italic serif-gradient">RAGNext Workflow Engine</span>
+        </h2>
+        <p class="section-lead">
+          Slide 3 Breakdown: A continuous, bi-directional intelligence loop connecting ingestion, version lineage indexing, semantic retrieval, and structured verified outputs.
+        </p>
+      </div>
+
+      <!-- Interactive Workflow Stepper Component -->
+      <div class="workflow-stepper-container" id="workflowStepper">
+        
+        <!-- Workflow Top Timeline Navigation -->
+        <div class="workflow-nav-bar">
+          <div class="workflow-progress-line" id="workflowProgressLine"></div>
+          
+          <button class="step-nav-btn active" data-step="1" id="stepBtn1">
+            <span class="step-num-bubble">1</span>
+            <span class="step-nav-label">Input Documents</span>
+          </button>
+
+          <button class="step-nav-btn" data-step="2" id="stepBtn2">
+            <span class="step-num-bubble">2</span>
+            <span class="step-nav-label">Read & Understand</span>
+          </button>
+
+          <button class="step-nav-btn" data-step="3" id="stepBtn3">
+            <span class="step-num-bubble">3</span>
+            <span class="step-nav-label">Store with Version</span>
+          </button>
+
+          <button class="step-nav-btn" data-step="4" id="stepBtn4">
+            <span class="step-num-bubble">4</span>
+            <span class="step-nav-label">User Question</span>
+          </button>
+
+          <button class="step-nav-btn" data-step="5" id="stepBtn5">
+            <span class="step-num-bubble">5</span>
+            <span class="step-nav-label">Find Latest Version</span>
+          </button>
+
+          <button class="step-nav-btn" data-step="6" id="stepBtn6">
+            <span class="step-num-bubble">6</span>
+            <span class="step-nav-label">Structured Output</span>
+          </button>
+        </div>
+
+        <!-- Workflow Step Stage Viewer -->
+        <div class="workflow-stage-card" id="workflowStageCard">
+          
+          <!-- Step 1 Details (Slide 3 Step 1) -->
+          <div class="workflow-step-pane active" data-step="1" id="stepPane1">
+            <div class="pane-grid">
+              <div class="pane-info">
+                <div class="step-badge">STEP 01 INGESTION</div>
+                <h3 class="pane-title">Input Multi-Format Documents</h3>
+                <p class="pane-text">
+                  Users and enterprise connectors ingest diverse document formats into the RAGNext pipeline. Whether it is standard PDFs, corporate Word documentation, executive slide decks, or raw plain text files, the ingestion gateway accepts all inputs seamlessly.
+                </p>
+                <div class="format-showcase-grid">
+                  <div class="fmt-card red">
+                    <span class="fmt-ext">PDF</span>
+                    <span class="fmt-name">Policies & SOPs</span>
+                  </div>
+                  <div class="fmt-card blue">
+                    <span class="fmt-ext">DOCX</span>
+                    <span class="fmt-name">Rules & Circulars</span>
+                  </div>
+                  <div class="fmt-card orange">
+                    <span class="fmt-ext">PPT</span>
+                    <span class="fmt-name">Manuals & Decks</span>
+                  </div>
+                  <div class="fmt-card green">
+                    <span class="fmt-ext">TXT</span>
+                    <span class="fmt-name">Logs & Schemas</span>
+                  </div>
+                </div>
+              </div>
+              <div class="pane-visual">
+                <div class="visual-box ingestion-visual">
+                  <div class="drag-drop-mockup">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    <span class="dd-title">Multi-Format Gateway Active</span>
+                    <span class="dd-sub">Supported: PDF, DOCX, PPT, TXT</span>
+                    <div class="incoming-file-chip">
+                      <span class="chip-file-icon">📄</span>
+                      <span class="chip-file-name">Safety_Standards_2025_v3.0.pdf</span>
+                      <span class="chip-file-status">Ready</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2 Details (Slide 3 Step 2) -->
+          <div class="workflow-step-pane" data-step="2" id="stepPane2">
+            <div class="pane-grid">
+              <div class="pane-info">
+                <div class="step-badge">STEP 02 EXTRACTION & COMPREHENSION</div>
+                <h3 class="pane-title">Read & Understand Documents</h3>
+                <p class="pane-text">
+                  The cognitive ingestion engine extracts clean text, reconstructs layout geometry, recognizes tables and charts, and generates high-dimensional semantic embeddings with boundary-aware chunking.
+                </p>
+                <ul class="check-list">
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> OCR & Table Layout Reconstruction</li>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Contextual Chunking with Preserved Headers</li>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Dense Semantic Embeddings Generation</li>
+                </ul>
+              </div>
+              <div class="pane-visual">
+                <div class="visual-box ocr-visual">
+                  <div class="neural-chunk-animation">
+                    <div class="chunk-node"><span class="node-tag">Section 1.0</span> Document Scope</div>
+                    <div class="chunk-connector"></div>
+                    <div class="chunk-node active"><span class="node-tag">Section 2.4</span> Max Operating Pressure [350 bar]</div>
+                    <div class="chunk-connector"></div>
+                    <div class="chunk-node"><span class="node-tag">Table 4</span> Maintenance Frequencies</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3 Details (Slide 3 Step 3) -->
+          <div class="workflow-step-pane" data-step="3" id="stepPane3">
+            <div class="pane-grid">
+              <div class="pane-info">
+                <div class="step-badge">STEP 03 TEMPORAL GRAPH STORAGE</div>
+                <h3 class="pane-title">Store with Document Version Lineage</h3>
+                <p class="pane-text">
+                  Extracted chunks are stored in a specialized Version-Graph Vector Database. Each chunk is tagged with its publication date, version hash (v1.0, v2.0, v3.0), validity status, and superseding relationships.
+                </p>
+                <div class="version-storage-preview">
+                  <div class="storage-row superseded">
+                    <span class="v-tag">v1.0</span>
+                    <span class="v-file">Manual_2019.pdf</span>
+                    <span class="v-status">Superseded</span>
+                  </div>
+                  <div class="storage-row superseded">
+                    <span class="v-tag">v2.0</span>
+                    <span class="v-file">Manual_2022.pdf</span>
+                    <span class="v-status">Superseded</span>
+                  </div>
+                  <div class="storage-row current">
+                    <span class="v-tag active">v3.0</span>
+                    <span class="v-file">Manual_2025.pdf</span>
+                    <span class="v-status text-green">Active Valid &check;</span>
+                  </div>
+                </div>
+              </div>
+              <div class="pane-visual">
+                <div class="visual-box db-visual">
+                  <div class="database-cylinder-graphic">
+                    <div class="db-disc"></div>
+                    <div class="db-body">
+                      <div class="db-item-slot">v1.0 [Archived]</div>
+                      <div class="db-item-slot">v2.0 [Archived]</div>
+                      <div class="db-item-slot active">v3.0 [LIVE INDEX] &#10004;</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4 Details (Slide 3 Step 4) -->
+          <div class="workflow-step-pane" data-step="4" id="stepPane4">
+            <div class="pane-grid">
+              <div class="pane-info">
+                <div class="step-badge">STEP 04 USER INTERACTION</div>
+                <h3 class="pane-title">User Question Formulation</h3>
+                <p class="pane-text">
+                  The user asks a question in plain conversational English or technical shorthand. The intent resolver extracts core entities, domain constraints, and temporal expectations (e.g. "What is our current allowance for 2025?").
+                </p>
+                <div class="sample-question-box">
+                  <span class="q-icon">?</span>
+                  <span class="q-content">"What are the mandatory inspection checkpoints before operating the hydraulic system?"</span>
+                </div>
+              </div>
+              <div class="pane-visual">
+                <div class="visual-box user-query-visual">
+                  <div class="avatar-query-bubble">
+                    <div class="user-avatar-icon">👤</div>
+                    <div class="chat-bubble">
+                      <p>"What is the active safety threshold for hydraulic press operations?"</p>
+                      <span class="chat-time">User Query · Just Now</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 5 Details (Slide 3 Step 5) -->
+          <div class="workflow-step-pane" data-step="5" id="stepPane5">
+            <div class="pane-grid">
+              <div class="pane-info">
+                <div class="step-badge">STEP 05 TEMPORAL FILTER & RETRIEVAL</div>
+                <h3 class="pane-title">Find Latest Version & Retrieve Context</h3>
+                <p class="pane-text">
+                  The retrieval engine performs version resolution before executing dense vector retrieval. It prioritizes chunks belonging to the latest valid document version, automatically discarding outdated revisions that contain deprecated information.
+                </p>
+                <div class="retrieval-metric-badge">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                  <span>Evaluated 1,420 chunks across 3 revisions &rarr; Selected Top 3 chunks in v3.0</span>
+                </div>
+              </div>
+              <div class="pane-visual">
+                <div class="visual-box search-visual">
+                  <div class="search-radar-animation">
+                    <div class="radar-scan"></div>
+                    <div class="radar-point old" title="v1.0 (Filtered out)"></div>
+                    <div class="radar-point old" title="v2.0 (Filtered out)"></div>
+                    <div class="radar-point match active" title="v3.0 Target (Selected)"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 6 Details (Slide 3 Step 6) -->
+          <div class="workflow-step-pane" data-step="6" id="stepPane6">
+            <div class="pane-grid">
+              <div class="pane-info">
+                <div class="step-badge">STEP 06 GROUNDED RESPONSE</div>
+                <h3 class="pane-title">Structured Output with Full Evidence</h3>
+                <p class="pane-text">
+                  The model generates a crystal-clear, factual answer accompanied by full audit metadata: the exact Source Document, Version Number, Page Reference, and Highlighted Evidence Passage.
+                </p>
+                <div class="structured-output-preview-card">
+                  <div class="out-item"><span class="k">🎯 Answer:</span> <span class="v">Operating pressure must never exceed 350 bar.</span></div>
+                  <div class="out-item"><span class="k">🔗 Source:</span> <span class="v text-blue">Hydraulic_Press_Manual_2025.pdf</span></div>
+                  <div class="out-item"><span class="k">🏷️ Version:</span> <span class="v text-green">v3.0 (Latest Valid)</span></div>
+                  <div class="out-item"><span class="k">📄 Page:</span> <span class="v">Page 42, §3.8</span></div>
+                  <div class="out-item"><span class="k">🔍 Evidence:</span> <span class="v text-slate">"Notice: The pressure safety threshold was reduced from 450 bar to 350 bar in Rev 3.0..."</span></div>
+                </div>
+              </div>
+              <div class="pane-visual">
+                <div class="visual-box output-visual">
+                  <div class="verified-certificate-mock">
+                    <div class="cert-header">
+                      <span class="cert-stamp">&check; VERIFIED AUDIT READY</span>
+                      <span class="cert-score">Grounding: 100%</span>
+                    </div>
+                    <div class="cert-body">
+                      <span>Zero hallucination detected</span>
+                      <span>Temporal validity confirmed</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Workflow Stepper Controls -->
+        <div class="workflow-controls-bar">
+          <button class="btn-step-ctrl" id="btnPrevStep" disabled>&larr; Previous Step</button>
+          <div class="step-indicator-text" id="stepIndicatorText">Showing Step 1 of 6: Input Documents</div>
+          <button class="btn-step-ctrl active" id="btnNextStep">Next Step &rarr;</button>
+          <button class="btn-step-auto" id="btnAutoPlayWorkflow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span id="autoPlayText">Auto-Play Tour</span>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CHAPTER 04: LIVE INTERACTIVE SANDBOX & PLAYGROUND -->
+  <section class="section-editorial bg-alt py-96" id="interactiveSandbox">
+    <div class="container">
+      
+      <div class="section-header-editorial text-center">
+        <div class="editorial-chapter-pill center">
+          <span class="chapter-num">CHAPTER 04</span>
+          <span class="chapter-title">INTERACTIVE TESTBENCH & REVISION VIEWER</span>
+        </div>
+        <h2 class="section-title">
+          Experience Version-Aware <br/>
+          <span class="serif-italic serif-gradient">Retrieval in Action</span>
+        </h2>
+        <p class="section-lead">
+          Test real enterprise scenarios. Select a domain or upload a simulated file to see how RAGNext resolves document versions and generates structured citations in real-time.
+        </p>
+      </div>
+
+      <!-- Live Sandbox Container -->
+      <div class="sandbox-app-wrapper" id="sandboxApp">
+        
+        <!-- Left Sidebar: Domain Scenarios & Simulated Document Knowledge Base -->
+        <div class="sandbox-sidebar">
+          <div class="sidebar-header">
+            <h4>Knowledge Base Repositories</h4>
+            <span class="badge-count">4 Domains Loaded</span>
+          </div>
+
+          <div class="scenario-selector-group">
+            <button class="scenario-btn active" data-scenario="hr" id="scenBtnHr">
+              <div class="scen-icon">🏢</div>
+              <div class="scen-meta">
+                <span class="scen-title">HR & Company Policies</span>
+                <span class="scen-docs">3 Versions (v1.0, v2.0, v3.0)</span>
+              </div>
+            </button>
+
+            <button class="scenario-btn" data-scenario="engineering" id="scenBtnEng">
+              <div class="scen-icon">⚙️</div>
+              <div class="scen-meta">
+                <span class="scen-title">Engineering Machinery SOPs</span>
+                <span class="scen-docs">2 Versions (v1.2, v2.4)</span>
+              </div>
+            </button>
+
+            <button class="scenario-btn" data-scenario="healthcare" id="scenBtnHealth">
+              <div class="scen-icon">🏥</div>
+              <div class="scen-meta">
+                <span class="scen-title">Clinical Sepsis & SOPs</span>
+                <span class="scen-docs">2 Versions (2020, 2024)</span>
+              </div>
+            </button>
+
+            <button class="scenario-btn" data-scenario="finance" id="scenBtnFin">
+              <div class="scen-icon">💼</div>
+              <div class="scen-meta">
+                <span class="scen-title">Finance & Compliance Circulars</span>
+                <span class="scen-docs">3 Versions (FY22, FY24, FY25)</span>
+              </div>
+            </button>
+          </div>
+
+          <!-- Document Upload Mock Simulation Widget -->
+          <div class="upload-sim-box">
+            <div class="upload-dropzone" id="mockUploadDropzone">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E40AF" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <span>Drag & drop new version (.pdf, .docx, .ppt)</span>
+              <button class="btn-sim-upload" id="btnSimUploadNewVersion">+ Ingest Revision v4.0</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Main Panel: Query Box, Dynamic Results, Source Evidence Inspector -->
+        <div class="sandbox-main">
+          
+          <!-- Top Sandbox Context Banner -->
+          <div class="sandbox-context-bar">
+            <div class="context-details">
+              <span class="ctx-label">Active Scenario:</span>
+              <strong class="ctx-name" id="activeScenarioName">Company HR Travel & Expense Policies</strong>
+            </div>
+            <div class="version-status-pill" id="activeVersionPill">
+              <span class="dot-green"></span>
+              <span>Active Truth: <strong>v3.0 (Jan 2025 Edition)</strong></span>
+            </div>
+          </div>
+
+          <!-- Query Input Area -->
+          <div class="sandbox-query-section">
+            <label for="sandboxQueryInput" class="query-label">Enter your question or select a preset inquiry:</label>
+            <div class="query-input-bar">
+              <input type="text" id="sandboxQueryInput" class="query-text-input" value="What is the maximum reimbursement allowance for daily meals and hotel during overseas trips?" />
+              <button class="btn-execute-query" id="btnExecuteQuery">
+                <span>Run Version-Aware RAG</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+
+            <!-- Quick Inquiry Chips -->
+            <div class="sample-queries-bar" id="sampleQueriesBar">
+              <!-- Dynamically populated via JS -->
+            </div>
+          </div>
+
+          <!-- Results & Evidence Area -->
+          <div class="sandbox-results-area" id="sandboxResultsArea">
+            
+            <!-- Result Card -->
+            <div class="result-breakdown-card">
+              
+              <!-- Result Header with Version Assurance -->
+              <div class="result-header">
+                <div class="res-title-group">
+                  <div class="res-badge-verified">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>RAGNext Grounded Synthesis</span>
+                  </div>
+                  <span class="res-latency" id="resLatencyTag">Response generated in 640ms</span>
+                </div>
+                <div class="version-lineage-chips" id="resVersionLineage">
+                  <span class="chip-v old">v1.0 (2021) ❌</span>
+                  <span class="chip-v old">v2.0 (2023) ❌</span>
+                  <span class="chip-v current">v3.0 (2025) ✔ Active</span>
+                </div>
+              </div>
+
+              <!-- Main Synthesized Answer Box -->
+              <div class="result-answer-box">
+                <h4 class="answer-heading">Direct Answer:</h4>
+                <p class="answer-paragraph" id="resAnswerParagraph">
+                  Under the active <strong>2025 Global Travel & Expense Policy (v3.0)</strong>, the daily meal per diem has been revised to <strong>$85 USD / day</strong> (up from $60 in v2.0), and the maximum hotel accommodation allowance is <strong>$280 USD / night for Tier-1 cities</strong> and <strong>$210 USD / night for Tier-2 cities</strong>. Alcohol expenses remain non-reimbursable unless part of an authorized client entertainment dinner.
+                </p>
+              </div>
+
+              <!-- Structured Output Metadata (Slide 3 Step 6) -->
+              <div class="structured-output-grid">
+                <div class="meta-field-card">
+                  <span class="field-icon">📄</span>
+                  <div class="field-info">
+                    <span class="field-label">Document Source</span>
+                    <strong class="field-value" id="resMetaSource">Global_HR_Policy_Manual_2025.pdf</strong>
+                  </div>
+                </div>
+
+                <div class="meta-field-card">
+                  <span class="field-icon">🏷️</span>
+                  <div class="field-info">
+                    <span class="field-label">Verified Version</span>
+                    <strong class="field-value text-green" id="resMetaVersion">v3.0 (Supersedes v1.0 & v2.0)</strong>
+                  </div>
+                </div>
+
+                <div class="meta-field-card">
+                  <span class="field-icon">📍</span>
+                  <div class="field-info">
+                    <span class="field-label">Exact Page & Section</span>
+                    <strong class="field-value" id="resMetaPage">Page 18, Section 4.2.1</strong>
+                  </div>
+                </div>
+
+                <div class="meta-field-card">
+                  <span class="field-icon">🛡️</span>
+                  <div class="field-info">
+                    <span class="field-label">Grounding Confidence</span>
+                    <strong class="field-value text-blue" id="resMetaGrounding">99.8% (0% Hallucination)</strong>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Interactive Evidence Excerpt Viewer Modal/Box -->
+              <div class="evidence-box-viewer">
+                <div class="evidence-header">
+                  <div class="ev-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <span>Verifiable Evidence Excerpt from Source Document:</span>
+                  </div>
+                  <span class="ev-page-badge" id="resEvidenceBadge">Page 18 Snippet</span>
+                </div>
+                <div class="evidence-content" id="resEvidenceContent">
+                  <span class="doc-text">"...[Section 4.2.1 Meal & Lodging Allowances] Commencing January 1, 2025, employees traveling internationally are eligible for </span>
+                  <mark class="doc-highlight">a daily meal per diem of $85 USD</mark>
+                  <span class="doc-text">. Hotel lodging reimbursements are capped at </span>
+                  <mark class="doc-highlight">$280 USD per night in Tier 1 metropolises</mark>
+                  <span class="doc-text"> (London, Tokyo, New York, Singapore) and $210 USD per night in Tier 2 regions. This document supersedes all previous editions including Policy Memo 2023-08 (v2.0)..."</span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CHAPTER 05: TARGET USERS & USE CASES (SLIDE 4) -->
+  <section class="section-editorial py-96" id="targetUsers">
+    <div class="container">
+      
+      <div class="section-header-editorial text-center">
+        <div class="editorial-chapter-pill center">
+          <span class="chapter-num">CHAPTER 05</span>
+          <span class="chapter-title">TARGET AUDIENCE & ENTERPRISE USE CASES</span>
+        </div>
+        <h2 class="section-title">
+          Engineered for <br/>
+          <span class="serif-italic serif-gradient">High-Stakes Knowledge Domains</span>
+        </h2>
+        <p class="section-lead">
+          Slide 4 Breakdown: When accuracy is mandatory and outdated data causes financial, physical, or compliance catastrophe, RAGNext provides the single source of verified truth.
+        </p>
+      </div>
+
+      <!-- Interactive Industry Dossier Grid (5 Persona Columns) -->
+      <div class="industry-matrix-grid">
+        
+        <!-- 1. Company Employees (Slide 4 Item 1) -->
+        <div class="industry-card" id="indCardEmployees">
+          <div class="ind-top-bar">
+            <span class="ind-icon">🏢</span>
+            <span class="ind-cat">CORPORATE ENTERPRISE</span>
+          </div>
+          <h3 class="ind-user-title">Company Employees</h3>
+          <div class="ind-usecase-badge">Company Policies & Rules</div>
+          
+          <p class="ind-summary">
+            Navigating frequently updated internal policies without bothering HR or risking reimbursement rejections.
+          </p>
+
+          <div class="ind-features-list">
+            <div class="ind-feat-item">
+              <strong>Key Documents:</strong> HR Handbooks, Leave Policies, Travel Limits, Code of Conduct, Benefit Matrices.
+            </div>
+            <div class="ind-feat-item">
+              <strong>Pain Point Solved:</strong> Employees no longer rely on old PDFs saved on desktops with expired compensation limits.
+            </div>
+            <div class="ind-feat-item">
+              <strong>ROI Impact:</strong> 85% reduction in repetitive HR inquiries; zero out-of-policy expense submissions.
+            </div>
+          </div>
+
+          <div class="ind-sample-prompt">
+            <span class="sample-label">Typical Query:</span>
+            <span class="sample-quote">"How many paternity leave days am I eligible for under the revised 2025 parental policy?"</span>
+          </div>
+        </div>
+
+        <!-- 2. Engineers (Slide 4 Item 2) -->
+        <div class="industry-card" id="indCardEngineers">
+          <div class="ind-top-bar">
+            <span class="ind-icon">⚙️</span>
+            <span class="ind-cat">MANUFACTURING & INDUSTRIAL</span>
+          </div>
+          <h3 class="ind-user-title">Engineers & Field Techs</h3>
+          <div class="ind-usecase-badge">Machine Manuals & Instructions</div>
+          
+          <p class="ind-summary">
+            Instant lookups for complex machinery tolerances, electrical schematics, calibration specs, and emergency shutdowns.
+          </p>
+
+          <div class="ind-features-list">
+            <div class="ind-feat-item">
+              <strong>Key Documents:</strong> OEM Manuals, CAD Specs, Maintenance Checklists, Safety Bulletins, Torque Charts.
+            </div>
+            <div class="ind-feat-item">
+              <strong>Pain Point Solved:</strong> Eliminates catastrophic equipment failure caused by applying obsolete torque limits from old manuals.
+            </div>
+            <div class="ind-feat-item">
+              <strong>ROI Impact:</strong> 4x faster mean-time-to-repair (MTTR); 100% compliance with active safety bulletins.
+            </div>
+          </div>
+
+          <div class="ind-sample-prompt">
+            <span class="sample-label">Typical Query:</span>
+            <span class="sample-quote">"What is the required bolt torque sequence and tightening pressure for Turbine Assembly v2.4?"</span>
+          </div>
+        </div>
+
+        <!-- 3. Government Officers (Slide 4 Item 3) -->
+        <div class="industry-card" id="indCardGovernment">
+          <div class="ind-top-bar">
+            <span class="ind-icon">🏛️</span>
+            <span class="ind-cat">PUBLIC SECTOR & CIVIC</span>
+          </div>
+          <h3 class="ind-user-title">Government Officers</h3>
+          <div class="ind-usecase-badge">Government Rules & Circulars</div>
+          
+          <p class="ind-summary">
+            Parsing through continuous statutory amendments, public gazettes, civic guidelines, and administrative orders.
+          </p>
+
+          <div class="ind-features-list">
+            <div class="ind-feat-item">
+              <strong>Key Documents:</strong> Official Gazettes, Regulatory Circulars, Statutory Rules, Zoning Codes, Tender Guidelines.
+            </div>
+            <div class="ind-feat-item">
+              <strong>Pain Point Solved:</strong> Prevents issuing public permits under repealed bylaws or outdated administrative guidelines.
+            </div>
+            <div class="ind-feat-item">
+              <strong>ROI Impact:</strong> Complete audit defensibility; instant retrieval across 10,000+ pages of public legislation.
+            </div>
+          </div>
+
+          <div class="ind-sample-prompt">
+            <span class="sample-label">Typical Query:</span>
+            <span class="sample-quote">"Has Circular No. 42/2021 regarding commercial solar subsidies been amended by the 2025 gazette?"</span>
+          </div>
+        </div>
+
+        <!-- 4. Finance and Compliance Teams (Slide 4 Item 4) -->
+        <div class="industry-card" id="indCardFinance">
+          <div class="ind-top-bar">
+            <span class="ind-icon">💼</span>
+            <span class="ind-cat">FINANCIAL SERVICES & AUDIT</span>
+          </div>
+          <h3 class="ind-user-title">Finance & Compliance Teams</h3>
+          <div class="ind-usecase-badge">Finance & Compliance Docs</div>
+          
+          <p class="ind-summary">
+            Immediate verification of anti-money laundering (AML) thresholds, tax deduction rules, and cross-border audit criteria.
+          </p>
+
+          <div class="ind-features-list">
+            <div class="ind-feat-item">
+              <strong>Key Documents:</strong> IFRS / GAAP Standards, Tax Circulars, AML Directives, SOX Compliance Handbooks, Audit Charters.
+            </div>
+            <div class="ind-feat-item">
+              <strong>Pain Point Solved:</strong> Zero penalty risk from filing taxes or conducting audits with superseded accounting codes.
+            </div>
+            <div class="ind-feat-item">
+              <strong>ROI Impact:</strong> Saves hundreds of billable audit hours; eliminates regulatory non-compliance penalties.
+            </div>
+          </div>
+
+          <div class="ind-sample-prompt">
+            <span class="sample-label">Typical Query:</span>
+            <span class="sample-quote">"What is the statutory threshold for filing suspicious transaction reports under the FY25 AML guideline?"</span>
+          </div>
+        </div>
+
+        <!-- 5. Healthcare Staff (Slide 4 Item 5) -->
+        <div class="industry-card" id="indCardHealthcare">
+          <div class="ind-top-bar">
+            <span class="ind-icon">🏥</span>
+            <span class="ind-cat">HEALTHCARE & CLINICAL</span>
+          </div>
+          <h3 class="ind-user-title">Healthcare Staff</h3>
+          <div class="ind-usecase-badge">Healthcare Guidelines & SOPs</div>
+          
+          <p class="ind-summary">
+            Life-critical clinical decision support ensuring nurses and physicians apply the newest hospital SOPs and drug dosages.
+          </p>
+
+          <div class="ind-features-list">
+            <div class="ind-feat-item">
+              <strong>Key Documents:</strong> Clinical Practice Guidelines, ICU SOPs, Medication Formularies, Infection Control Protocols.
+            </div>
+            <div class="ind-feat-item">
+              <strong>Pain Point Solved:</strong> Prevents medical dosing errors by eliminating access to superseded pharmaceutical protocols.
+            </div>
+            <div class="ind-feat-item">
+              <strong>ROI Impact:</strong> Enhanced patient safety, immediate emergency response adherence, and JCI accreditation compliance.
+            </div>
+          </div>
+
+          <div class="ind-sample-prompt">
+            <span class="sample-label">Typical Query:</span>
+            <span class="sample-quote">"What is the first-line antibiotic administration window for pediatric sepsis in the 2025 Clinical SOP?"</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CHAPTER 06: IMPACT & ROI CALCULATOR -->
+  <section class="section-editorial bg-alt py-96" id="roiCalculator">
+    <div class="container">
+      
+      <div class="section-header-editorial text-center">
+        <div class="editorial-chapter-pill center">
+          <span class="chapter-num">CHAPTER 06</span>
+          <span class="chapter-title">QUANTIFIABLE BUSINESS VALUE</span>
+        </div>
+        <h2 class="section-title">
+          Calculate Your Organization's <br/>
+          <span class="serif-italic serif-gradient">Time & Cost Savings</span>
+        </h2>
+        <p class="section-lead">
+          See how eliminating document hunting and version-drift errors translates into direct dollar savings and recovered engineering hours.
+        </p>
+      </div>
+
+      <!-- ROI Calculator Component -->
+      <div class="roi-calc-container">
+        <div class="roi-inputs-column">
+          <h3 class="calc-subheading">1. Adjust Your Organization's Parameters</h3>
+          
+          <!-- Slider 1: Team Size -->
+          <div class="calc-input-group">
+            <div class="calc-label-row">
+              <label for="inputTeamSize">Number of Knowledge Workers / Employees:</label>
+              <span class="calc-val-display" id="valDisplayTeam">250 people</span>
+            </div>
+            <input type="range" id="inputTeamSize" min="10" max="5000" step="10" value="250" class="editorial-slider" />
+          </div>
+
+          <!-- Slider 2: Hours spent searching per week -->
+          <div class="calc-input-group">
+            <div class="calc-label-row">
+              <label for="inputSearchHours">Hours spent hunting & verifying docs / week / person:</label>
+              <span class="calc-val-display" id="valDisplayHours">4.0 hrs</span>
+            </div>
+            <input type="range" id="inputSearchHours" min="1" max="12" step="0.5" value="4" class="editorial-slider" />
+          </div>
+
+          <!-- Slider 3: Average Hourly Cost -->
+          <div class="calc-input-group">
+            <div class="calc-label-row">
+              <label for="inputHourlyRate">Average Fully Loaded Hourly Cost ($/hr):</label>
+              <span class="calc-val-display" id="valDisplayRate">$55 / hr</span>
+            </div>
+            <input type="range" id="inputHourlyRate" min="20" max="250" step="5" value="55" class="editorial-slider" />
+          </div>
+
+          <!-- Slider 4: Doc Revisions per Month -->
+          <div class="calc-input-group">
+            <div class="calc-label-row">
+              <label for="inputRevisionCount">Monthly Policy / Manual Revisions:</label>
+              <span class="calc-val-display" id="valDisplayRevisions">15 revisions</span>
+            </div>
+            <input type="range" id="inputRevisionCount" min="1" max="100" step="1" value="15" class="editorial-slider" />
+          </div>
+        </div>
+
+        <div class="roi-outputs-column">
+          <h3 class="calc-subheading">2. Estimated Annual Value with RAGNext</h3>
+
+          <div class="roi-metric-big">
+            <span class="metric-lead-label">ANNUAL PRODUCTIVITY SAVINGS</span>
+            <span class="metric-big-dollar" id="metricAnnualSavings">$2,145,000</span>
+            <span class="metric-subtext">Based on 80% time recovery in document retrieval</span>
+          </div>
+
+          <div class="roi-metrics-duo">
+            <div class="mini-metric-card">
+              <span class="mini-label">Hours Recovered / Year</span>
+              <strong class="mini-val text-blue" id="metricHoursSaved">39,000 hrs</strong>
+            </div>
+
+            <div class="mini-metric-card">
+              <span class="mini-label">Version-Error Risk Reduced</span>
+              <strong class="mini-val text-green" id="metricRiskReduced">99.4%</strong>
+            </div>
+          </div>
+
+          <div class="roi-quote-block">
+            <p>"By guaranteeing that queries only touch active, verified document versions, RAGNext completely removes the liability of acting on deprecated SOPs."</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CHAPTER 07: FREQUENTLY ASKED QUESTIONS -->
+  <section class="section-editorial py-96" id="faqSection">
+    <div class="container max-w-800">
+      
+      <div class="section-header-editorial text-center">
+        <div class="editorial-chapter-pill center">
+          <span class="chapter-num">CHAPTER 07</span>
+          <span class="chapter-title">FREQUENTLY ASKED QUESTIONS</span>
+        </div>
+        <h2 class="section-title">
+          Architectural Details & <br/>
+          <span class="serif-italic serif-gradient">Integration Questions</span>
+        </h2>
+      </div>
+
+      <div class="faq-accordion-group">
+        
+        <div class="faq-item">
+          <button class="faq-trigger" aria-expanded="false">
+            <span class="faq-q-text">How does RAGNext automatically detect when a document has been revised?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-content">
+            <p>RAGNext utilizes a multi-signal version detection engine combining structural header analysis (e.g. "Revision 3.2", "Effective Jan 2025"), metadata timestamps, semantic diff hashing against previous document family embeddings, and explicit lineage tags provided by source connectors.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" aria-expanded="false">
+            <span class="faq-q-text">What happens if a user asks a question about an older historical version on purpose?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-content">
+            <p>RAGNext supports explicit temporal queries (e.g. <em>"What was our parental leave policy in 2021 before the amendment?"</em>). The query planner routes the question to the archived v1.0 index, clearly flagging the response with an <code>[ARCHIVAL CITATION]</code> tag while alerting the user to what the current active rule is.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" aria-expanded="false">
+            <span class="faq-q-text">Can RAGNext connect to existing document repositories like SharePoint or Google Drive?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-content">
+            <p>Yes. RAGNext provides plug-and-play webhook connectors for SharePoint Online, Google Drive, Microsoft 365, Box, Amazon S3, and Git repositories. When a file is modified or re-uploaded, an automatic ingestion event updates the version graph without requiring full re-indexing.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" aria-expanded="false">
+            <span class="faq-q-text">How does RAGNext handle tables, diagrams, and scanned PDFs?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-content">
+            <p>RAGNext includes layout-aware vision-language parsing. Multi-column PDFs and financial tables are converted into structured Markdown representations with page and cell coordinates preserved, ensuring exact row-level citations.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PRESENTATION / PITCH POPUP MODAL (PITCH VIEW) -->
+  <div class="presentation-modal" id="pitchModal" style="display: none;">
+    <div class="presentation-backdrop" id="pitchBackdrop"></div>
+    <div class="presentation-slide-deck">
+      <div class="deck-topbar">
+        <div class="deck-meta">
+          <span class="deck-badge">PITCH DECK MODE</span>
+          <span class="deck-title" id="deckSlideTitle">Slide 1: Existing Problem vs Proposed Solution</span>
+        </div>
+        <button class="btn-deck-close" id="btnClosePitchModal" title="Close Presentation View">&times;</button>
+      </div>
+
+      <div class="deck-slide-viewport" id="deckViewport">
+        <!-- Slide Content Rendered Dynamically via JS -->
+      </div>
+
+      <div class="deck-controls">
+        <button class="btn-deck-nav" id="btnDeckPrev">&larr; Previous Slide</button>
+        <div class="deck-slide-indicators" id="deckIndicators">
+          <span class="indicator active" data-slide="1">1</span>
+          <span class="indicator" data-slide="2">2</span>
+          <span class="indicator" data-slide="3">3</span>
+          <span class="indicator" data-slide="4">4</span>
+        </div>
+        <button class="btn-deck-nav" id="btnDeckNext">Next Slide &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Editorial Footer -->
+  <footer class="editorial-footer">
+    <div class="container footer-grid">
+      
+      <div class="footer-brand-col">
+        <div class="footer-logo">
+          <span class="brand-name">RAG<span class="brand-accent">Next</span></span>
+        </div>
+        <p class="footer-motto">
+          An Edutorial Intelligence Blueprint. Precision-grounded, version-aware enterprise retrieval designed for zero hallucinations.
+        </p>
+        <div class="footer-copy">
+          &copy; 2025 RAGNext Research &amp; Engineering. All rights reserved.
+        </div>
+      </div>
+
+      <div class="footer-links-col">
+        <h5 class="footer-head">Project Slides</h5>
+        <ul>
+          <li><a href="#problemSolution">1. Existing Problem vs Solution</a></li>
+          <li><a href="#ideaOverview">2. Idea Overview &amp; Capabilities</a></li>
+          <li><a href="#workflowSection">3. 6-Stage System Workflow</a></li>
+          <li><a href="#targetUsers">4. Target Users &amp; Use Cases</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-col">
+        <h5 class="footer-head">Interactive Tools</h5>
+        <ul>
+          <li><a href="#interactiveSandbox">Live RAG Sandbox</a></li>
+          <li><a href="#workflowSection">Interactive Pipeline Tour</a></li>
+          <li><a href="#roiCalculator">ROI &amp; Labor Savings Calc</a></li>
+          <li><a href="javascript:void(0)" id="footerOpenPitch">Launch Pitch View</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-col">
+        <h5 class="footer-head">Document Formats</h5>
+        <div class="footer-formats-pill">
+          <span>.PDF</span>
+          <span>.DOCX</span>
+          <span>.PPTX</span>
+          <span>.TXT</span>
+        </div>
+        <p class="footer-subtext">Enterprise-ready ingestion with page-level citation tracing.</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
