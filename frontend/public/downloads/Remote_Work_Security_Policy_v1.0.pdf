@@ -1,83 +1,74 @@
 %PDF-1.4
-%âãÏÓ
+%“Œ‹ž ReportLab Generated PDF document (opensource)
 1 0 obj
-<< /Type /Catalog /Pages 2 0 R >>
+<<
+/F1 2 0 R /F2 3 0 R
+>>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+<<
+/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
+>>
 endobj
 3 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 6 0 R /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> >>
+<<
+/BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
+>>
 endobj
 4 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+<<
+/Contents 8 0 R /MediaBox [ 0 0 612 792 ] /Parent 7 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
 endobj
 5 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+<<
+/PageMode /UseNone /Pages 7 0 R /Type /Catalog
+>>
 endobj
 6 0 obj
-<< /Length 1503 >>
+<<
+/Author (\(anonymous\)) /CreationDate (D:20261011211249+05'00') /Creator (\(unspecified\)) /Keywords () /ModDate (D:20261011211249+05'00') /Producer (ReportLab PDF Library - \(opensource\)) 
+  /Subject (\(unspecified\)) /Title (\(anonymous\)) /Trapped /False
+>>
+endobj
+7 0 obj
+<<
+/Count 1 /Kids [ 4 0 R ] /Type /Pages
+>>
+endobj
+8 0 obj
+<<
+/Filter [ /ASCII85Decode /FlateDecode ] /Length 1422
+>>
 stream
-BT
-/F2 16 Tf
-54 738 Td
-(CYBER KNIGHTS ENTERPRISE - INFOSEC POLICY) Tj
-0 -22 Td
-/F1 10 Tf
-(Version 1.0 \(Superseded\) | Effective: Jan 1, 2022 | Expiration: Dec 31, 2023) Tj
-0 -25 Td
-/F2 12 Tf
-(SECTION 1: REMOTE NETWORK ACCESS) Tj
-0 -18 Td
-/F1 10 Tf
-(1.1 All remote employees must connect to corporate infrastructure via Cisco AnyConnect VPN.) Tj
-0 -14 Td
-(1.2 VPN session idle timeout is set to 8 hours. Split-tunneling is enabled for non-work internet traffic.) Tj
-0 -14 Td
-0 -10 Td
-/F2 12 Tf
-(SECTION 2: PASSWORD AND AUTHENTICATION STANDARDS) Tj
-0 -18 Td
-/F1 10 Tf
-(2.1 Passwords must be at least 8 characters long, including one number and one symbol.) Tj
-0 -14 Td
-(2.2 Mandatory password rotation is enforced every 90 days across all corporate directories.) Tj
-0 -14 Td
-(2.3 Two-Factor Authentication \(2FA\) is optional for standard non-administrative user accounts.) Tj
-0 -14 Td
-0 -10 Td
-/F2 12 Tf
-(SECTION 3: HARDWARE AND DEVICE MANAGEMENT \(BYOD\)) Tj
-0 -18 Td
-/F1 10 Tf
-(3.1 Bring Your Own Device \(BYOD\) is permitted: Personal laptops may be used if registered with IT.) Tj
-0 -14 Td
-(3.2 Employees are responsible for maintaining updated antivirus software on personal equipment.) Tj
-0 -14 Td
-0 -10 Td
-/F2 12 Tf
-(SECTION 4: DATA TRANSFER AND STORAGE) Tj
-0 -18 Td
-/F1 10 Tf
-(4.1 Offline data backup to encrypted USB flash drives is permitted for business continuity.) Tj
-0 -14 Td
-(4.2 File transfers over standard email attachments are allowed up to 25 MB per message.) Tj
-0 -14 Td
-0 -10 Td
-ET
-endstream
+Gatm:?#uc!'Rf_Z\8TW82O#k)S2ZCHina8tJL&K6?5/K2F[;abLrV=Mn\)f"\(bM_G%,eP+A8&BmQL:M#Aj<!h/?-m9QKo>k()JY^&c9`I)s&fOq7O/36.G<%7(ijA/qrB@2QR>=SCBj`W91:i/d4)jRW?R3N(MI!-sQT?#W+DfQBp@Mtg_DV!rXi^V7fG8="OaY1%Z^5eK_@E!c-tCm?=:#KVCMr+ENAYJ/6@LY#`uodbL+7i%VV+W`]Jb5h0h@/5g=$ASRIk+@1W#K@dg]-PY`X!K`k%?D=Ym2GGWBek,7!.R<jRjE&<^It`f;hT3UJnlSSr8Y9Z4AE+3QmOP4LN0L6m;R;8lbF!k:BN*U"*]E3a7_L"0sBUI2Peq,hCYeE+1ld#+F>?'HOOPT7K1Am_]FLK`q:<ijRnU!PWS*MB82s#Ig'Pl=QKi?PPflpIYK82P:Z$2A<3fn&2$.jk`9RCHemjTcZ`cUM[TU3S.U?_3=o1*86QBqJ_!OAp67&*>G\#)SC9fW(3h8I+UQG&Hm=KrZ7U/K.D.>90iNdVM!sBaK"L^(l9dcU"oe\<A#TBgJ8:_\MCQRJ#?Fk>1omTh2)'aE*W49'd>YQ/<Nm4?<#0"=`Up!E&TYkcZ^FNJH)bNa:O=MSL:!5#NKCpZ^H<h#e0Kug._1Bha_&GJI`B3dnNY'BgH)C&gacJs=b\]#6F=\k2S[(_T>sh'GF%8sPYQSE20?P+9?Tb<Xbfq;+j6XPSgY-Z'h.qcMJS+p"m/XTVJqbalg;`q:5!UcOOIIN.IadCP#O\kg"i]`((BY-;>Sa[&'rWU/hUHQ!htD(6ZZcC;J;ddobe(0@LCTrIA&W5CdUef$:l=o_@uV].14ICXa1$F-g,sq>S$Cr\=?uZ:rZA5[hQHI3.QFiE+]b$/V9:q&9U]mBs`q\,8r??ZYS'oZsenM>=IY'6pD%9d(2G`c`)$T$>r\^pJIB$8tRGSo/M:i[#D/O"_o(r:**HGQh3UeST>XqV/=n:K9n[0n5/ooBb^Jq:'7O;LFIX["[)lA3H(jtRF\a`L;b4tdXBGd.<Z%PlSU+l)-!EZU;?OHHdb,[J[2>udB?Dq?U)91Zb(uO;S4\^a)>9:kqc8j+b8Ze&tQ/BZA;s4ALZ"d@E8$6D\bR`ql=LZk@c1Q(Iomo(FIOoQ.Y:@_$rhL%*fOaT+n`D0Ruq7;W&JI)+!"b.oKj_-Coo3*pE:_di3XP]!3'1cKiJ6^8")A"F1n;ZPgK0)51[<.Rf3f!Z]q_:U#m@>\uC/\PY1,:#LjB?e`TeLQiTqhjDpLAeWfr6uAW^Qr`mN1cqg&[0e.O8rd+(e,0.*HL<fSiT&o81V:1C>]%\C+ja-%fb(=m6T<Pa'O12^NUD\p6&-1:C8>9_ieuN"@e`3J%*16l8+*slZ@Kbu4ST$d~>endstream
 endobj
 xref
-0 7
+0 9
 0000000000 65535 f 
-0000000015 00000 n 
-0000000064 00000 n 
-0000000121 00000 n 
-0000000257 00000 n 
-0000000327 00000 n 
-0000000402 00000 n 
+0000000061 00000 n 
+0000000102 00000 n 
+0000000209 00000 n 
+0000000321 00000 n 
+0000000514 00000 n 
+0000000582 00000 n 
+0000000862 00000 n 
+0000000921 00000 n 
 trailer
-<< /Size 7 /Root 1 0 R >>
+<<
+/ID 
+[<29f9e1d49a795ae5f95679355866d713><29f9e1d49a795ae5f95679355866d713>]
+% ReportLab generated PDF document -- digest (opensource)
+
+/Info 6 0 R
+/Root 5 0 R
+/Size 9
+>>
 startxref
-1957
+2434
 %%EOF

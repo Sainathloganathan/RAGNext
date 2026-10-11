@@ -1,85 +1,74 @@
 %PDF-1.4
-%âãÏÓ
+%“Œ‹ž ReportLab Generated PDF document (opensource)
 1 0 obj
-<< /Type /Catalog /Pages 2 0 R >>
+<<
+/F1 2 0 R /F2 3 0 R
+>>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+<<
+/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
+>>
 endobj
 3 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 6 0 R /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> >>
+<<
+/BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
+>>
 endobj
 4 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+<<
+/Contents 8 0 R /MediaBox [ 0 0 612 792 ] /Parent 7 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
 endobj
 5 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+<<
+/PageMode /UseNone /Pages 7 0 R /Type /Catalog
+>>
 endobj
 6 0 obj
-<< /Length 1644 >>
+<<
+/Author (\(anonymous\)) /CreationDate (D:20261011211249+05'00') /Creator (\(unspecified\)) /Keywords () /ModDate (D:20261011211249+05'00') /Producer (ReportLab PDF Library - \(opensource\)) 
+  /Subject (\(unspecified\)) /Title (\(anonymous\)) /Trapped /False
+>>
+endobj
+7 0 obj
+<<
+/Count 1 /Kids [ 4 0 R ] /Type /Pages
+>>
+endobj
+8 0 obj
+<<
+/Filter [ /ASCII85Decode /FlateDecode ] /Length 1612
+>>
 stream
-BT
-/F2 16 Tf
-54 738 Td
-(CYBER KNIGHTS ENTERPRISE - INFOSEC POLICY) Tj
-0 -22 Td
-/F1 10 Tf
-(Version 3.0 \(Active\) | Effective: Jan 1, 2025 | Expiration: Indefinite / Active) Tj
-0 -25 Td
-/F2 12 Tf
-(SECTION 1: REMOTE NETWORK ACCESS) Tj
-0 -18 Td
-/F1 10 Tf
-(1.1 All remote connections require Zero Trust Network Access \(ZTNA\) with continuous posture check.) Tj
-0 -14 Td
-(1.2 Maximum idle session timeout is 30 minutes. Re-authentication is enforced at every resumption.) Tj
-0 -14 Td
-0 -10 Td
-/F2 12 Tf
-(SECTION 2: PASSWORD AND AUTHENTICATION STANDARDS) Tj
-0 -18 Td
-/F1 10 Tf
-(2.1 Traditional passwords are deprecated in favor of FIDO2 WebAuthn hardware keys \(YubiKey 5\).) Tj
-0 -14 Td
-(2.2 For fallback systems requiring passphrases, minimum length is 16 characters with no periodic rotation.) Tj
-0 -14 Td
-(2.3 SMS-based 2FA is strictly banned due to SIM-swapping risks. Only FIDO2 hardware keys allowed.) Tj
-0 -14 Td
-0 -10 Td
-/F2 12 Tf
-(SECTION 3: HARDWARE AND DEVICE MANAGEMENT) Tj
-0 -18 Td
-/F1 10 Tf
-(3.1 BYOD personal devices are 100% prohibited across all departments without exception.) Tj
-0 -14 Td
-(3.2 Only company hardware with CrowdStrike Falcon EDR, TPM 2.0, and remote wipe is permitted.) Tj
-0 -14 Td
-0 -10 Td
-/F2 12 Tf
-(SECTION 4: DATA TRANSFER AND ARTIFICIAL INTELLIGENCE USAGE) Tj
-0 -18 Td
-/F1 10 Tf
-(4.1 USB storage ports remain permanently disabled at hardware BIOS level.) Tj
-0 -14 Td
-(4.2 Corporate AI Policy: Employees may only use internal offline document systems \(RAGNext/Ollama\).) Tj
-0 -14 Td
-(     Uploading internal source code or customer PII to public cloud AI tools is a critical violation.) Tj
-0 -14 Td
-0 -10 Td
-ET
-endstream
+Gatm:gN)%,&:O:Slq;!XNm7'ngD__A%V(Dp8_U."IXsc*64FP986XD75J@Nji\jNpac*<`-'?.*SDA70@=a7gX8Ph8JEmn59J*Jb86930L(!5d"R4Uk1Md#$c\1._J.LZt_t4-8gBGJ7Rb"\JL=LABAe3D_)$[C,Z0`U.3<lq.)X+uFXi$`k+0U;6DPQ^`A"#XoV*VbM_^'d&4C5f<K[Fn5"QKk\s+9le3+'nu_XZ[F-_gG>?iNRG4!I$Sjo>f!d.+nj/Z[e#reJ]\!],%Z>@7t-S:pJ>*5dH-F+9^7&&H]ur!gJa)RR7KnB$a,\cgcp4alA:72Q9O#^-`r#6[6tVI:195pp'dgB"`jKC;TK`aI0"qZqF[%L4>XG1\!opu\YkQf[-8D>Y*0r#hNC%qk)pDI6J`ljke/m9!-@l/9=WGd$5$BTgHo)F5@ek%OfmOFEeA[n(EW,Y9@.ZYpgKfXS-J%SckCg:s9IDnuu$B`O1m6jT)eJM.-SQHP]tPsrN&c"0c2V6:>0%)+DA+]V6:6cA8L<%m0.b,Peap*G]GXOr9ZCV@1=73e9/1A8j>K2P`mK+[=9d?i#>U>l^-;in7m7_\E*aan)V6%p_L$e.:OZDiCVi*^72A^)\,@Wk2/HHd![-(;2iJ/'T6.*I.j^g<G_r[TFbPH)_trO&->TOm`n<R3h)C?uN`r$4SA9Yc_YI@ksVF,+8?]q(sDd>oZG.e9+d.9'iQMGckuXtrEJPbb<U-s6]VbFc%;0ha:`PS^PJY>TpV_).\+D>;>@51ZBW2,W$r5Q8O.>$@!3P2EPsG`XVu=nQmaST8Lj$6D*!&`&<MYpArFWbkbBr87`b4L`h_[3@$$9<G!jCk<DJkQ"QmeqbL`6>NHuSM(<V,r1Q"Vk@Qpp-NN=Q$%+fNs"<g:6oc&5GdI,1/"d9LcPWbl>*1qXZ3H%(7#*bSO(g\W$N_Jm&Jd$ZIEDVThC,>-u26^YDjrt,"jPmeCm7\![I%]GpqTjNjOMYCmIf'#':Jb*GhUrN%('^pCbgpr4kh*B:mUBc3QV.:HnYqd/%Dg4G;_pAq&gu">b.!-UPj:Kn14#d.QFHU6SWa(>?1CSUi?@r!c7Ef6k]JM[3;qgFm/8H]+g``tl*^S*k=`gV-qK\M]pb5i*e?#M6FGTJA/lZ$is!X8fGfRk-k5]eGfdJ__#l8ULj/@Ks8L?FD?<c^tY"EEnUrW%c<7(A[68F4A`K)g!:)]>odbglq[8HLG]sSjZ!7#UY#c6Q5i!1<&9SgQCMQS;-(N^VaPR)Vj/&2aN,F\kc.*SZod@9LBURFe;p6dA8&5H5`hfGI!`H(IjtWUd3U@feQlrV:\L)S;(tD]+4!1p9n$L\s$rV^RujmqDhq&`_msTS/'t;Y`OIcm0J<V'QVCjC62V69uV:H8UEn/<e;,IBI%H%("t`9n7Pe[.HJjnT?aKlY#.%fq_o,a<Z_Lqb#CohU#n\'S7$j^;gL;r*Os/GEOK:?4RRHU+I*hV4RS+@!S\X6PEO.XJjgOAN`n>6U]FH9-I]&2.E.dDT?bJm;Vs%R9,J&bA@SE&c;^IJZ!lptT[V:V>TZl51s0Kahm`*jV',6<g`CbH"2NSSIY:I(~>endstream
 endobj
 xref
-0 7
+0 9
 0000000000 65535 f 
-0000000015 00000 n 
-0000000064 00000 n 
-0000000121 00000 n 
-0000000257 00000 n 
-0000000327 00000 n 
-0000000402 00000 n 
+0000000061 00000 n 
+0000000102 00000 n 
+0000000209 00000 n 
+0000000321 00000 n 
+0000000514 00000 n 
+0000000582 00000 n 
+0000000862 00000 n 
+0000000921 00000 n 
 trailer
-<< /Size 7 /Root 1 0 R >>
+<<
+/ID 
+[<3c68322e242c420cbddd04aa3f6b9a31><3c68322e242c420cbddd04aa3f6b9a31>]
+% ReportLab generated PDF document -- digest (opensource)
+
+/Info 6 0 R
+/Root 5 0 R
+/Size 9
+>>
 startxref
-2098
+2624
 %%EOF

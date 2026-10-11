@@ -1,83 +1,74 @@
 %PDF-1.4
-%âãÏÓ
+%“Œ‹ž ReportLab Generated PDF document (opensource)
 1 0 obj
-<< /Type /Catalog /Pages 2 0 R >>
+<<
+/F1 2 0 R /F2 3 0 R
+>>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+<<
+/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
+>>
 endobj
 3 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 6 0 R /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> >>
+<<
+/BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
+>>
 endobj
 4 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+<<
+/Contents 8 0 R /MediaBox [ 0 0 612 792 ] /Parent 7 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
 endobj
 5 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+<<
+/PageMode /UseNone /Pages 7 0 R /Type /Catalog
+>>
 endobj
 6 0 obj
-<< /Length 1429 >>
+<<
+/Author (\(anonymous\)) /CreationDate (D:20261011211249+05'00') /Creator (\(unspecified\)) /Keywords () /ModDate (D:20261011211249+05'00') /Producer (ReportLab PDF Library - \(opensource\)) 
+  /Subject (\(unspecified\)) /Title (\(anonymous\)) /Trapped /False
+>>
+endobj
+7 0 obj
+<<
+/Count 1 /Kids [ 4 0 R ] /Type /Pages
+>>
+endobj
+8 0 obj
+<<
+/Filter [ /ASCII85Decode /FlateDecode ] /Length 1362
+>>
 stream
-BT
-/F2 16 Tf
-54 738 Td
-(CYBER KNIGHTS ENTERPRISE - INFOSEC POLICY) Tj
-0 -22 Td
-/F1 10 Tf
-(Version 2.0 \(Superseded\) | Effective: Jan 1, 2024 | Expiration: Dec 31, 2024) Tj
-0 -25 Td
-/F2 12 Tf
-(SECTION 1: REMOTE NETWORK ACCESS) Tj
-0 -18 Td
-/F1 10 Tf
-(1.1 Cisco AnyConnect is retired. All remote access must route through Cloudflare Zero Trust gateway.) Tj
-0 -14 Td
-(1.2 Maximum idle session timeout is reduced to 2 hours. Split-tunneling is strictly disabled.) Tj
-0 -14 Td
-0 -10 Td
-/F2 12 Tf
-(SECTION 2: PASSWORD AND AUTHENTICATION STANDARDS) Tj
-0 -18 Td
-/F1 10 Tf
-(2.1 Passwords must be at least 12 characters in length.) Tj
-0 -14 Td
-(2.2 Password rotation interval is set to 180 days.) Tj
-0 -14 Td
-(2.3 Multi-Factor Authentication \(MFA\) is mandatory for all users via SMS OTP or Authenticator app.) Tj
-0 -14 Td
-0 -10 Td
-/F2 12 Tf
-(SECTION 3: HARDWARE AND DEVICE MANAGEMENT) Tj
-0 -18 Td
-/F1 10 Tf
-(3.1 BYOD personal laptops are strictly prohibited for engineering, finance, and production access.) Tj
-0 -14 Td
-(3.2 Employees must use company-issued Lenovo ThinkPads with BitLocker encryption and Defender.) Tj
-0 -14 Td
-0 -10 Td
-/F2 12 Tf
-(SECTION 4: DATA TRANSFER AND STORAGE) Tj
-0 -18 Td
-/F1 10 Tf
-(4.1 External USB mass storage devices and removable flash drives are blocked at OS level.) Tj
-0 -14 Td
-(4.2 Cloud storage is restricted to corporate Microsoft OneDrive with Data Loss Prevention \(DLP\).) Tj
-0 -14 Td
-0 -10 Td
-ET
-endstream
+Gatn%gN):5&;KY!MS@;N,p&[4-?kI^).kk1m3J1'g^%,7G&3#CA27-O_f*^0p+TY$<Xkb<=I,EUDggo2"#dl`p+rlPmP=PsG//)@>D(s?5%IS7=mu*VF.+!!&;23%`\G[)LS=$dAIiWj(kC]NrkK#:hXiL`F,oVlOB!.M"Xc-X?.XbCMP'?.!ak)RqbL?%A=eooR7pK[nKM,Q%8>pE77uPMOSoC::N3^H9IKB%gF]H%).3DC(7^Y`*]jMJ#k[t$q2R6:qVNancbf%Dj&XeW8^b^i%^'B\b>nDC`-X6`UR)M\#E\JC`7a46gqr5f%aHrA2Wau]r3Dh<,e\mDM8;95GH1')O(o\[`V8Pe'o%9$5d`t+(ttA/@4N:[qjqJf<T"Bn]U"Yn'@&apZcjVC@(*roKG_`%*,jbXQp5J4d$dai4#HE]6:,:BN51ro:Q+9A6uboK[*)<rkas-1poAgmB]IWYs1\AQB41Cn!ZW&GYGf5m=4H/1%`DW6&gD=OV%>30Yb_\-N!ZGNju"Y?Lrp?K.]F<44D.8PeL1m7CiDd\n[dC?>frpGQaCAo/#st,[@-UuShS046gNaUf7n&68e4t#_a.]'s0kMu^C@b.UYg=H<5=ETJO9$7$IHFp-m,rcB18#j!ji(HE[`g]NGK;FAQ()edTsufNG^F1,o7N,6Kss%\i`6o'j[)lU/!5Tai_B=IG;=]8a\/]UGPDo7M*i7rK)HEdlrV`p2QP[@$HV]a`>':cao$:/ZDXOZ7\nRX:QB]-):5U`TLH/dp04_!>d^H2L=,K7([pT*aDtJV@<:N<#Z[a5UCb\[X63)+i+J%.-Ns>MXo'sqM->A0Pa;*DoS.V=[U^&/OKm:UUZYkff6j+LtX=.$AqalYf:r&:M$:p$MU&W3_NnD/HHs;G[=#hfD=s0b_"ZRgWgph#?/D+?4p0)(-Wmp:JjG^84V`\&egX$oB;di&D'[2Spq%R4QQ,%GqjmkAkrchplb'PgaOr-l[69f[G:<ff2rtc^(F6q(osnI>f3!<.WT\A\0Y`2QB6:!E.@)/Wjb=JSSr.[#qmomC0/O[A#HYf:gb<EG#TH!\5Ee$T/%Sa=Hg4!HsKW4Pcn>1iK!6'beGpn/[#\seq#P4@V[:t*2a(gSms)82I[3R!QPS=97l26_iM)/Z6Ym:A,M,%d$&(""M*b0k69]gR.6:VndXo<_;uiR_o&EH-]g4A0IYSFj*nJZ1S&Q)g&bY@<*Lbc^1TsC<i&B3@7h[a9T[=;*cc'HlC]u7YRp5*fpQU$%kch[4gs[_rjE7W_*<+[>h1uaK`1kQC9eCeA@ro@)'S5uQ'd59NO$O&=H01N/683Wn??`?Xa%[E)X.,+M+Q52~>endstream
 endobj
 xref
-0 7
+0 9
 0000000000 65535 f 
-0000000015 00000 n 
-0000000064 00000 n 
-0000000121 00000 n 
-0000000257 00000 n 
-0000000327 00000 n 
-0000000402 00000 n 
+0000000061 00000 n 
+0000000102 00000 n 
+0000000209 00000 n 
+0000000321 00000 n 
+0000000514 00000 n 
+0000000582 00000 n 
+0000000862 00000 n 
+0000000921 00000 n 
 trailer
-<< /Size 7 /Root 1 0 R >>
+<<
+/ID 
+[<24029e9c381b9d4cff61b3c8e88c1561><24029e9c381b9d4cff61b3c8e88c1561>]
+% ReportLab generated PDF document -- digest (opensource)
+
+/Info 6 0 R
+/Root 5 0 R
+/Size 9
+>>
 startxref
-1883
+2374
 %%EOF
