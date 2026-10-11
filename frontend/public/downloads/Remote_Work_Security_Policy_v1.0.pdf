@@ -1,0 +1,83 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 6 0 R /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+6 0 obj
+<< /Length 1503 >>
+stream
+BT
+/F2 16 Tf
+54 738 Td
+(CYBER KNIGHTS ENTERPRISE - INFOSEC POLICY) Tj
+0 -22 Td
+/F1 10 Tf
+(Version 1.0 \(Superseded\) | Effective: Jan 1, 2022 | Expiration: Dec 31, 2023) Tj
+0 -25 Td
+/F2 12 Tf
+(SECTION 1: REMOTE NETWORK ACCESS) Tj
+0 -18 Td
+/F1 10 Tf
+(1.1 All remote employees must connect to corporate infrastructure via Cisco AnyConnect VPN.) Tj
+0 -14 Td
+(1.2 VPN session idle timeout is set to 8 hours. Split-tunneling is enabled for non-work internet traffic.) Tj
+0 -14 Td
+0 -10 Td
+/F2 12 Tf
+(SECTION 2: PASSWORD AND AUTHENTICATION STANDARDS) Tj
+0 -18 Td
+/F1 10 Tf
+(2.1 Passwords must be at least 8 characters long, including one number and one symbol.) Tj
+0 -14 Td
+(2.2 Mandatory password rotation is enforced every 90 days across all corporate directories.) Tj
+0 -14 Td
+(2.3 Two-Factor Authentication \(2FA\) is optional for standard non-administrative user accounts.) Tj
+0 -14 Td
+0 -10 Td
+/F2 12 Tf
+(SECTION 3: HARDWARE AND DEVICE MANAGEMENT \(BYOD\)) Tj
+0 -18 Td
+/F1 10 Tf
+(3.1 Bring Your Own Device \(BYOD\) is permitted: Personal laptops may be used if registered with IT.) Tj
+0 -14 Td
+(3.2 Employees are responsible for maintaining updated antivirus software on personal equipment.) Tj
+0 -14 Td
+0 -10 Td
+/F2 12 Tf
+(SECTION 4: DATA TRANSFER AND STORAGE) Tj
+0 -18 Td
+/F1 10 Tf
+(4.1 Offline data backup to encrypted USB flash drives is permitted for business continuity.) Tj
+0 -14 Td
+(4.2 File transfers over standard email attachments are allowed up to 25 MB per message.) Tj
+0 -14 Td
+0 -10 Td
+ET
+endstream
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000121 00000 n 
+0000000257 00000 n 
+0000000327 00000 n 
+0000000402 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+1957
+%%EOF

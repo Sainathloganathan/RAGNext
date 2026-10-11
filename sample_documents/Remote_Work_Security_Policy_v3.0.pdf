@@ -1,0 +1,85 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 6 0 R /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+6 0 obj
+<< /Length 1644 >>
+stream
+BT
+/F2 16 Tf
+54 738 Td
+(CYBER KNIGHTS ENTERPRISE - INFOSEC POLICY) Tj
+0 -22 Td
+/F1 10 Tf
+(Version 3.0 \(Active\) | Effective: Jan 1, 2025 | Expiration: Indefinite / Active) Tj
+0 -25 Td
+/F2 12 Tf
+(SECTION 1: REMOTE NETWORK ACCESS) Tj
+0 -18 Td
+/F1 10 Tf
+(1.1 All remote connections require Zero Trust Network Access \(ZTNA\) with continuous posture check.) Tj
+0 -14 Td
+(1.2 Maximum idle session timeout is 30 minutes. Re-authentication is enforced at every resumption.) Tj
+0 -14 Td
+0 -10 Td
+/F2 12 Tf
+(SECTION 2: PASSWORD AND AUTHENTICATION STANDARDS) Tj
+0 -18 Td
+/F1 10 Tf
+(2.1 Traditional passwords are deprecated in favor of FIDO2 WebAuthn hardware keys \(YubiKey 5\).) Tj
+0 -14 Td
+(2.2 For fallback systems requiring passphrases, minimum length is 16 characters with no periodic rotation.) Tj
+0 -14 Td
+(2.3 SMS-based 2FA is strictly banned due to SIM-swapping risks. Only FIDO2 hardware keys allowed.) Tj
+0 -14 Td
+0 -10 Td
+/F2 12 Tf
+(SECTION 3: HARDWARE AND DEVICE MANAGEMENT) Tj
+0 -18 Td
+/F1 10 Tf
+(3.1 BYOD personal devices are 100% prohibited across all departments without exception.) Tj
+0 -14 Td
+(3.2 Only company hardware with CrowdStrike Falcon EDR, TPM 2.0, and remote wipe is permitted.) Tj
+0 -14 Td
+0 -10 Td
+/F2 12 Tf
+(SECTION 4: DATA TRANSFER AND ARTIFICIAL INTELLIGENCE USAGE) Tj
+0 -18 Td
+/F1 10 Tf
+(4.1 USB storage ports remain permanently disabled at hardware BIOS level.) Tj
+0 -14 Td
+(4.2 Corporate AI Policy: Employees may only use internal offline document systems \(RAGNext/Ollama\).) Tj
+0 -14 Td
+(     Uploading internal source code or customer PII to public cloud AI tools is a critical violation.) Tj
+0 -14 Td
+0 -10 Td
+ET
+endstream
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000121 00000 n 
+0000000257 00000 n 
+0000000327 00000 n 
+0000000402 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+2098
+%%EOF
