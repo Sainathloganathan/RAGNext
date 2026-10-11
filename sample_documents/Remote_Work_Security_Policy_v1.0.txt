@@ -1,0 +1,30 @@
+CYBER KNIGHTS ENTERPRISE CORP
+INFORMATION SECURITY MANUAL — VERSION 1.0
+EFFECTIVE DATE: JANUARY 1, 2022
+EXPIRATION DATE: DECEMBER 31, 2023
+STATUS: SUPERSEDED
+
+================================================================================
+SECTION 1: REMOTE NETWORK ACCESS
+================================================================================
+1.1 All remote employees must connect to the corporate network using the legacy Cisco AnyConnect VPN client.
+1.2 VPN session idle timeout is established at 8 continuous hours. Split-tunneling is enabled by default for non-corporate web traffic.
+
+================================================================================
+SECTION 2: PASSWORD AND AUTHENTICATION STANDARDS
+================================================================================
+2.1 Passwords must be a minimum of 8 characters in length, containing at least one numeral and one special character.
+2.2 Mandatory password rotation is enforced every 90 days.
+2.3 Two-Factor Authentication (2FA) is recommended but optional for non-administrative workstations.
+
+================================================================================
+SECTION 3: HARDWARE AND DEVICE MANAGEMENT (BYOD)
+================================================================================
+3.1 Bring Your Own Device (BYOD) is permitted: Employees may use personal Windows or macOS laptops for remote tasks, provided they register the MAC address with corporate IT.
+3.2 Antivirus software of the employee's choice must be active and updated on personal devices.
+
+================================================================================
+SECTION 4: DATA TRANSFER & STORAGE
+================================================================================
+4.1 Offline data backup to encrypted USB flash drives is permitted for emergency business continuity.
+4.2 File transfers over email attachments are allowed up to 25 MB per message.

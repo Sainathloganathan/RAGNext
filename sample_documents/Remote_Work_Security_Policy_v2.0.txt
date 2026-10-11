@@ -1,0 +1,30 @@
+CYBER KNIGHTS ENTERPRISE CORP
+INFORMATION SECURITY MANUAL — VERSION 2.0
+EFFECTIVE DATE: JANUARY 1, 2024
+EXPIRATION DATE: DECEMBER 31, 2024
+STATUS: SUPERSEDED
+
+================================================================================
+SECTION 1: REMOTE NETWORK ACCESS
+================================================================================
+1.1 Cisco AnyConnect has been retired. All remote connections must utilize Cloudflare Zero Trust / WireGuard gateway.
+1.2 Maximum idle session timeout is reduced to 2 continuous hours. Split-tunneling is strictly disabled.
+
+================================================================================
+SECTION 2: PASSWORD AND AUTHENTICATION STANDARDS
+================================================================================
+2.1 Passwords must be a minimum of 12 characters in length.
+2.2 Mandatory password rotation frequency is changed to 180 days.
+2.3 Multi-Factor Authentication (MFA) is mandatory across all employees via SMS OTP or Microsoft Authenticator app.
+
+================================================================================
+SECTION 3: HARDWARE AND DEVICE MANAGEMENT
+================================================================================
+3.1 BYOD personal laptops are strictly prohibited for engineering, finance, and production database access.
+3.2 Employees must use company-issued Lenovo ThinkPad workstations pre-installed with BitLocker full-disk encryption and centralized Defender antivirus.
+
+================================================================================
+SECTION 4: DATA TRANSFER & STORAGE
+================================================================================
+4.1 All USB external storage devices and removable media are blocked at the operating system level.
+4.2 File storage is restricted to corporate Microsoft OneDrive with Data Loss Prevention (DLP) tagging.
