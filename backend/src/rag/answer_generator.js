@@ -1,16 +1,14 @@
 import { config } from '../config/env.js';
 
-const SYSTEM_PROMPT = `You are a document intelligence assistant for the Cyber Knights RAGNext platform.
+const SYSTEM_PROMPT = `You are a helpful, professional, and friendly AI document intelligence assistant.
+Your goal is to answer questions in a clear, easy-to-understand, structured ChatGPT conversational format.
 
-Answer questions using ONLY the evidence provided in the retrieved document context.
-Do not invent facts, dates, rules, numbers, or citations.
-Prefer verified, valid document versions for current-information questions.
-Respect document status, effective dates, and expiration dates.
-Never silently treat an older or superseded version as current.
-If sources conflict or multiple active versions are present, explain the conflict explicitly.
-If the retrieved context does not contain sufficient evidence, state clearly that the answer cannot be verified from available documents.
-Distinguish direct evidence from interpretation.
-Cite the source document, version, and page number for all claims.`;
+Follow these strict guidelines:
+1. Provide a direct, plain-English summary answer first.
+2. Organize key details and rules into clean markdown bullet points with bold highlights.
+3. State clearly whether the rule is from an Active or Superseded document version.
+4. Conclude with a clear reference to the source document, version, and page number.
+5. Base your answers strictly on the retrieved context without hallucinating facts.`;
 
 export async function generateGroundedAnswer(query, retrievedChunks, contextMetadata = {}) {
   const { intentInfo, conflictWarning, eligibleVersions } = contextMetadata;
@@ -18,7 +16,7 @@ export async function generateGroundedAnswer(query, retrievedChunks, contextMeta
   // 1. Check for empty retrieval / Insufficient evidence
   if (!retrievedChunks || retrievedChunks.length === 0) {
     return {
-      answer: `Insufficient evidence found in the active document repository to answer: "${query}". No matching clauses or sections were located in the eligible document versions.`,
+      answer: `### ⚠️ Insufficient Evidence\n\nI searched through the document repository, but **no matching clauses or policies** were found in the active document versions to answer: *"${query}"*.\n\n*Please verify if this topic is covered in another document or check older superseded versions.*`,
       evidenceStatus: 'Insufficient evidence',
       confidenceScore: '0%',
       sources: [],
@@ -55,9 +53,9 @@ Content: "${c.content}"`;
 
   try {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 25000);
+    const timeout = setTimeout(() => controller.abort(), 60000); // 60 seconds for local CPU/GPU
 
-    const userPrompt = `Context:\n${contextFormatted}\n\nQuestion: ${query}\n\nProvide a concise, grounded answer citing the source document and version.`;
+    const userPrompt = `Context:\n${contextFormatted}\n\nQuestion: ${query}\n\nAnswer in a friendly, well-structured format with bullet points and bold highlights. Cite the source document, version, and page number.`;
 
     const res = await fetch(`${config.ollama.baseUrl}/api/generate`, {
       method: 'POST',
@@ -66,6 +64,10 @@ Content: "${c.content}"`;
         model: config.ollama.llmModel,
         system: SYSTEM_PROMPT,
         prompt: userPrompt,
+        options: {
+          temperature: 0.2,
+          num_predict: 350
+        },
         stream: false
       }),
       signal: controller.signal
@@ -80,7 +82,7 @@ Content: "${c.content}"`;
       }
     }
   } catch (e) {
-    // Ollama not reachable -> Fallback to grounded extractive answer synthesis
+    // Ollama timeout or unreachable -> Fallback to grounded extractive answer synthesis
   }
 
   // 4. Deterministic extractive synthesis fallback if Ollama is not active
@@ -110,21 +112,62 @@ Content: "${c.content}"`;
 }
 
 /**
- * Deterministic extractive answer generator when Ollama service is not running
+ * Clean, structured ChatGPT-style extractive answer generator
  */
 function synthesizeExtractiveAnswer(query, chunks, intentInfo) {
   const topChunk = chunks[0];
   const intent = intentInfo ? intentInfo.intent : 'CURRENT';
+  const docTitle = topChunk.metadata.document_title || 'Document';
+  const versionNum = topChunk.metadata.version_number || '1.0';
+  const status = topChunk.metadata.status || 'Active';
+  const page = topChunk.metadata.page_number || 1;
 
+  const content = topChunk.content.trim();
+  const lines = content.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0);
+
+  // Group lines into relevant bullet points
+  const points = [];
+  for (const line of lines) {
+    if (line.match(/^SECTION\s+\d+/i) || line.match(/^[A-Z\s]{5,}$/) || line.includes('EFFECTIVE DATE') || line.includes('EXPIRATION DATE')) {
+      continue;
+    }
+    if (line.match(/^\d+(\.\d+)?/)) {
+      points.push(line);
+    } else if (line.length > 25 && !line.includes('CYBER KNIGHTS')) {
+      points.push(line);
+    }
+  }
+
+  let formatted = '';
   if (intent === 'HISTORICAL') {
-    return `According to historical document "${topChunk.metadata.document_title}" (v${topChunk.metadata.version_number}, marked as ${topChunk.metadata.status}): ${topChunk.content.trim()}`;
+    formatted += `### 📜 Historical Policy (Version ${versionNum} — ${status})\n\n`;
+    formatted += `According to the archived **${docTitle} (v${versionNum})**, here was the policy in place:\n\n`;
+  } else if (intent === 'COMPARISON') {
+    formatted += `### ⚖️ Version Comparison\n\nHere is how the retrieved policy clauses compare across versions:\n\n`;
+    chunks.slice(0, 2).forEach(c => {
+      formatted += `**Version ${c.metadata.version_number} (${c.metadata.status}):**\n> ${c.content.trim()}\n\n`;
+    });
+    return formatted;
+  } else {
+    formatted += `### 📋 Current Policy (Version ${versionNum} — ${status})\n\n`;
+    formatted += `Based on the active **${docTitle}**, here are the key rules:\n\n`;
   }
 
-  if (intent === 'COMPARISON') {
-    const summary = chunks.slice(0, 2).map(c => `Under v${c.metadata.version_number} (${c.metadata.status}): "${c.content}"`).join('\n\n');
-    return `Version comparison between retrieved records:\n\n${summary}`;
+  if (points.length > 0) {
+    points.slice(0, 5).forEach(pt => {
+      // Format numbered rule bold
+      const match = pt.match(/^(\d+(\.\d+)?\s*)(.*)$/);
+      if (match) {
+        formatted += `- **Rule ${match[1].trim()}:** ${match[3]}\n`;
+      } else {
+        formatted += `- ${pt}\n`;
+      }
+    });
+    formatted += `\n`;
+  } else {
+    formatted += `${content}\n\n`;
   }
 
-  // Default Current
-  return `Based on the active document "${topChunk.metadata.document_title}" (Version ${topChunk.metadata.version_number}, Page ${topChunk.metadata.page_number || 1}): ${topChunk.content.trim()}`;
+  formatted += `📌 **Source:** *${docTitle}* (Version **v${versionNum}**, Page **${page}**)`;
+  return formatted;
 }
