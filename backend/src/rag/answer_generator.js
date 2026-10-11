@@ -55,7 +55,7 @@ Content: "${c.content}"`;
 
   try {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 6000);
+    const timeout = setTimeout(() => controller.abort(), 25000);
 
     const userPrompt = `Context:\n${contextFormatted}\n\nQuestion: ${query}\n\nProvide a concise, grounded answer citing the source document and version.`;
 

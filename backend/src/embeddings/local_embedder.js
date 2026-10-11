@@ -11,7 +11,7 @@ export async function generateEmbedding(text) {
   // 1. Try local Ollama embedding API
   try {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 2000);
+    const timeout = setTimeout(() => controller.abort(), 10000);
 
     const res = await fetch(`${config.ollama.baseUrl}/api/embeddings`, {
       method: 'POST',
