@@ -77,6 +77,7 @@ export const vectorStore = {
    * Search chunks by semantic similarity with metadata filters
    */
   async search(query, options = {}) {
+    loadLocalVectors();
     const {
       topK = 5,
       versionIds = null,
