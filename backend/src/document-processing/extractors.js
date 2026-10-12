@@ -39,7 +39,13 @@ export async function extractDocumentText(filePath, mimeType, originalName) {
     };
 
     try {
-      const pdfResult = await pdf(dataBuffer, options);
+      let pdfResult;
+      try {
+        pdfResult = await pdf(dataBuffer, options);
+      } catch (optionsErr) {
+        // Fallback to default pdf parser without custom options
+        pdfResult = await pdf(dataBuffer);
+      }
       const totalPages = pdfResult.numpages || (pageTexts.length > 0 ? pageTexts.length : 1);
 
       if (pageTexts.length > 0) {

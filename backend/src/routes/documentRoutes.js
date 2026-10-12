@@ -93,6 +93,16 @@ router.post('/upload', upload.single('file'), async (req, res, next) => {
       });
     }
 
+    // If marked Active and adding to an existing document, supersede earlier Active versions
+    if (status === 'Active' && resolvedDocId) {
+      const existingVersions = await documentRepository.getVersionsByDocumentId(resolvedDocId);
+      for (const prevVer of existingVersions) {
+        if (prevVer.status === 'Active') {
+          await documentRepository.updateVersionStatus(prevVer.id, 'Superseded');
+        }
+      }
+    }
+
     // 3. Create Version Record
     const versionId = `ver_${crypto.randomBytes(6).toString('hex')}`;
     const newVersion = {
