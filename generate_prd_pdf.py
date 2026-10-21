@@ -2,10 +2,9 @@ import os
 import sys
 from reportlab.lib.pagesizes import A4
 from reportlab.lib import colors
-from reportlab.lib.units import inch
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.platypus import (
-    SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak, KeepTogether
+    SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak
 )
 from reportlab.pdfgen import canvas
 
@@ -42,138 +41,123 @@ class NumberedCanvas(canvas.Canvas):
         super().save()
 
     def draw_page_decorations(self, total_pages):
-        # Page 1: Cover page banner
+        # Page 1: Emerald Top Accent
         if self._pageNumber == 1:
             self.saveState()
-            self.setFillColor(colors.HexColor("#059669")) # Emerald Accent Bar
-            self.rect(0, 815, 595.27, 27, fill=1, stroke=0)
             self.setFillColor(GREEN_DARK)
-            self.rect(0, 810, 595.27, 5, fill=1, stroke=0)
+            self.rect(0, 818, 595.27, 24, fill=1, stroke=0)
+            self.setFillColor(GREEN_ACCENT)
+            self.rect(0, 814, 595.27, 4, fill=1, stroke=0)
             self.restoreState()
-            return
+        else:
+            # Pages 2 and 3: Running Header
+            self.saveState()
+            self.setFillColor(NAVY_HEADER)
+            self.rect(0, 818, 595.27, 24, fill=1, stroke=0)
+            self.setFillColor(WHITE)
+            self.setFont("Helvetica-Bold", 8)
+            self.drawString(32, 826, "PRD | RAGNext — Autonomous Version-Aware Document Intelligence Engine")
+            self.drawRightString(595.27 - 32, 826, "Team Cyber Knights (SH-SVA-04)")
 
-        # Pages 2+: Running Header
-        self.saveState()
-        self.setFillColor(NAVY_HEADER)
-        self.rect(0, 815, 595.27, 27, fill=1, stroke=0)
-
-        self.setFillColor(WHITE)
-        self.setFont("Helvetica-Bold", 8.5)
-        self.drawString(36, 824, "PRD | RAGNext — Autonomous Version-Aware Document Intelligence Engine")
-        self.drawRightString(595.27 - 36, 824, "Team Cyber Knights (SH-SVA-04)")
-
-        # Running Footer
-        self.setStrokeColor(BORDER_COLOR)
-        self.setLineWidth(0.5)
-        self.line(36, 36, 595.27 - 36, 36)
-
-        self.setFillColor(TEXT_MUTED)
-        self.setFont("Helvetica", 8)
-        self.drawString(36, 24, "Confidential — Product Requirements Document (PRD)")
-        self.drawRightString(595.27 - 36, 24, f"Page {self._pageNumber} of {total_pages}")
-        self.restoreState()
+            # Running Footer
+            self.setStrokeColor(BORDER_COLOR)
+            self.setLineWidth(0.5)
+            self.line(32, 28, 595.27 - 32, 28)
+            self.setFillColor(TEXT_MUTED)
+            self.setFont("Helvetica", 7.5)
+            self.drawString(32, 18, "Product Requirements Document (PRD) — Engineering Specification")
+            self.drawRightString(595.27 - 32, 18, f"Page {self._pageNumber} of {total_pages}")
+            self.restoreState()
 
 def create_prd_pdf(output_path="RAGNext_Stage2_PRD_Cyber_Knights.pdf"):
     doc = SimpleDocTemplate(
         output_path,
         pagesize=A4,
-        leftMargin=36,
-        rightMargin=36,
-        topMargin=36,
-        bottomMargin=36
+        leftMargin=32,
+        rightMargin=32,
+        topMargin=28,
+        bottomMargin=28
     )
 
     styles = getSampleStyleSheet()
 
-    style_cover_cat = ParagraphStyle(
-        'CoverCategory',
-        parent=styles['Normal'],
-        fontName='Helvetica-Bold',
-        fontSize=11,
-        leading=14,
-        textColor=colors.HexColor("#475569"),
-        alignment=1,
-        spaceAfter=14
-    )
-
-    style_cover_title = ParagraphStyle(
+    style_title = ParagraphStyle(
         'CoverTitle',
         parent=styles['Normal'],
         fontName='Helvetica-Bold',
-        fontSize=21,
-        leading=26,
+        fontSize=15,
+        leading=18,
         textColor=GREEN_DARK,
         alignment=1,
-        spaceAfter=10
+        spaceAfter=2
     )
 
-    style_cover_sub = ParagraphStyle(
-        'CoverSubtitle',
+    style_sub = ParagraphStyle(
+        'CoverSub',
         parent=styles['Normal'],
-        fontName='Helvetica',
-        fontSize=11,
-        leading=15,
-        textColor=colors.HexColor("#334155"),
+        fontName='Helvetica-Bold',
+        fontSize=9,
+        leading=11,
+        textColor=NAVY_HEADER,
         alignment=1,
-        spaceAfter=22
+        spaceAfter=7
     )
 
     style_h1 = ParagraphStyle(
-        'SectionHeading',
+        'Heading1Custom',
         parent=styles['Normal'],
         fontName='Helvetica-Bold',
-        fontSize=11.5,
-        leading=14,
-        textColor=GREEN_ACCENT,
-        spaceBefore=7,
-        spaceAfter=4,
+        fontSize=9.5,
+        leading=11.5,
+        textColor=GREEN_DARK,
+        spaceBefore=4,
+        spaceAfter=2,
         keepWithNext=True
     )
 
     style_body = ParagraphStyle(
-        'BodyTextCustom',
+        'BodyCustom',
         parent=styles['Normal'],
         fontName='Helvetica',
-        fontSize=7.8,
-        leading=10.2,
+        fontSize=7.0,
+        leading=8.8,
         textColor=TEXT_DARK,
-        spaceAfter=3.5
+        spaceAfter=2
     )
 
-    style_table_header = ParagraphStyle(
-        'TableHeader',
+    style_th = ParagraphStyle(
+        'TH',
         parent=styles['Normal'],
         fontName='Helvetica-Bold',
-        fontSize=7.8,
-        leading=9.5,
-        textColor=WHITE,
-        alignment=0
+        fontSize=6.8,
+        leading=8.2,
+        textColor=WHITE
     )
 
-    style_table_cell = ParagraphStyle(
-        'TableCell',
+    style_td = ParagraphStyle(
+        'TD',
         parent=styles['Normal'],
         fontName='Helvetica',
-        fontSize=7.2,
-        leading=9.0,
+        fontSize=6.5,
+        leading=8.0,
         textColor=TEXT_DARK
     )
 
-    style_table_cell_bold = ParagraphStyle(
-        'TableCellBold',
+    style_td_bold = ParagraphStyle(
+        'TDBold',
         parent=styles['Normal'],
         fontName='Helvetica-Bold',
-        fontSize=7.2,
-        leading=9.0,
+        fontSize=6.5,
+        leading=8.0,
         textColor=TEXT_DARK
     )
 
-    style_table_cell_center = ParagraphStyle(
-        'TableCellCenter',
+    style_td_center = ParagraphStyle(
+        'TDCenter',
         parent=styles['Normal'],
         fontName='Helvetica',
-        fontSize=7.2,
-        leading=9.0,
+        fontSize=6.5,
+        leading=8.0,
         textColor=TEXT_DARK,
         alignment=1
     )
@@ -181,336 +165,209 @@ def create_prd_pdf(output_path="RAGNext_Stage2_PRD_Cyber_Knights.pdf"):
     story = []
 
     # =========================================================================
-    # PAGE 1: COVER PAGE
+    # PAGE 1: VISION, SCOPE & SYSTEM ARCHITECTURE
     # =========================================================================
-    story.append(Spacer(1, 140))
-    story.append(Paragraph("PRODUCT REQUIREMENTS DOCUMENT (PRD)", style_cover_cat))
-    story.append(Paragraph("Autonomous Version-Aware Document<br/>Intelligence Engine with Verifiable Grounding", style_cover_title))
-    story.append(Paragraph("Stage 2 Engineering Specification | Hackathon Problem Statement SH-SVA-04", style_cover_sub))
-    story.append(Spacer(1, 15))
+    story.append(Spacer(1, 14))
+    story.append(Paragraph("PRODUCT REQUIREMENTS DOCUMENT (PRD)", style_title))
+    story.append(Paragraph("RAGNext: Autonomous Version-Aware Document Intelligence Engine with Verifiable Grounding", style_sub))
 
-    cover_meta_data = [
-        [Paragraph("Product Name", style_table_cell_bold), Paragraph("RAGNext (Cyber Knights Document Intelligence)", style_table_cell)],
-        [Paragraph("Document Type", style_table_cell_bold), Paragraph("Product Requirements Document (PRD) — Release v1.0", style_table_cell)],
-        [Paragraph("Problem Statement ID", style_table_cell_bold), Paragraph("SH-SVA-04 (Smart Virtual Assistant for Version-Aware Document Search)", style_table_cell)],
-        [Paragraph("Team Members", style_table_cell_bold), Paragraph("Sainath Loganathan, Tahir Azeem", style_table_cell)],
-        [Paragraph("Core Architecture", style_table_cell_bold), Paragraph("Temporal Version Lineage Graph, Pre-Retrieval State Filtering, Local Ollama Inference", style_table_cell)],
-        [Paragraph("Target Environment", style_table_cell_bold), Paragraph("Enterprise Air-Gapped / Offline-First / Zero Cloud Telemetry", style_table_cell)],
+    meta_data = [
+        [Paragraph("Product Name", style_td_bold), Paragraph("RAGNext (Cyber Knights Document Intelligence)", style_td),
+         Paragraph("Problem Statement ID", style_td_bold), Paragraph("SH-SVA-04 (Version-Aware Smart Virtual Assistant)", style_td)],
+        [Paragraph("Authors / Team", style_td_bold), Paragraph("Sainath Loganathan, Tahir Azeem (Cyber Knights)", style_td),
+         Paragraph("Target Release", style_td_bold), Paragraph("Stage 2 Evaluation & Enterprise Air-Gapped MVP", style_td)]
     ]
-    t_cover = Table(cover_meta_data, colWidths=[140, 383])
-    t_cover.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (0,-1), BG_ACCENT),
-        ('BACKGROUND', (1,0), (1,-1), WHITE),
-        ('BOX', (0,0), (-1,-1), 0.7, BORDER_COLOR),
-        ('INNERGRID', (0,0), (-1,-1), 0.5, BORDER_COLOR),
-        ('TOPPADDING', (0,0), (-1,-1), 4.5),
-        ('BOTTOMPADDING', (0,0), (-1,-1), 4.5),
-        ('LEFTPADDING', (0,0), (-1,-1), 8),
-        ('RIGHTPADDING', (0,0), (-1,-1), 8),
-    ]))
-    story.append(t_cover)
-    story.append(Spacer(1, 35))
-
-    p_valid_problem = Paragraph(
-        "<b>Core Principle:</b> <i>'Find the right information, from the right document version, with verifiable evidence.'</i><br/>"
-        "RAGNext eliminates superseded document hallucinations by combining revision lineage graphs, metadata pre-retrieval filtering, and exact page-level grounded citations.",
-        ParagraphStyle('CoverValidated', parent=styles['Normal'], fontName='Helvetica', fontSize=8.5, leading=12.5, textColor=TEXT_DARK, alignment=1)
-    )
-    story.append(p_valid_problem)
-    story.append(Spacer(1, 28))
-
-    story.append(Paragraph("<b>Problem First – Architecture Next – Verifiable Intelligence Always</b>", ParagraphStyle(
-        'CoverSlogan', parent=styles['Normal'], fontName='Helvetica-Bold', fontSize=10, leading=13, textColor=GREEN_ACCENT, alignment=1
-    )))
-    story.append(PageBreak())
-
-    # =========================================================================
-    # PAGE 2: TABLE OF CONTENTS & EXECUTIVE SUMMARY
-    # =========================================================================
-    story.append(Paragraph("Table of Contents", style_h1))
-    toc_data = [
-        [Paragraph("#", style_table_header), Paragraph("Section", style_table_header), Paragraph("#", style_table_header), Paragraph("Section", style_table_header)],
-        [Paragraph("1", style_table_cell_center), Paragraph("Executive Summary & Product Vision", style_table_cell), Paragraph("6", style_table_cell_center), Paragraph("Non-Functional Requirements (NFR)", style_table_cell)],
-        [Paragraph("2", style_table_cell_center), Paragraph("Problem Statement & Scope", style_table_cell), Paragraph("7", style_table_cell_center), Paragraph("Data Model & Database Schema", style_table_cell)],
-        [Paragraph("3", style_table_cell_center), Paragraph("User Personas & User Journeys", style_table_cell), Paragraph("8", style_table_cell_center), Paragraph("REST API Endpoints Specification", style_table_cell)],
-        [Paragraph("4", style_table_cell_center), Paragraph("System Architecture & Tech Stack", style_table_cell), Paragraph("9", style_table_cell_center), Paragraph("UI & Screen Workflows", style_table_cell)],
-        [Paragraph("5", style_table_cell_center), Paragraph("Functional Requirements (MoSCoW)", style_table_cell), Paragraph("10", style_table_cell_center), Paragraph("Success Metrics & Milestones", style_table_cell)],
-    ]
-    t_toc = Table(toc_data, colWidths=[25, 235, 25, 238])
-    t_toc.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,0), HEADER_BLUE),
-        ('BOX', (0,0), (-1,-1), 0.6, BORDER_COLOR),
+    t_meta = Table(meta_data, colWidths=[85, 180, 95, 171])
+    t_meta.setStyle(TableStyle([
+        ('BACKGROUND', (0,0), (-1,-1), BG_ACCENT),
+        ('BOX', (0,0), (-1,-1), 0.5, BORDER_COLOR),
         ('INNERGRID', (0,0), (-1,-1), 0.4, BORDER_COLOR),
-        ('TOPPADDING', (0,0), (-1,-1), 2.5),
-        ('BOTTOMPADDING', (0,0), (-1,-1), 2.5),
-        ('ROWBACKGROUNDS', (0,1), (-1,-1), [WHITE, BG_LIGHT]),
+        ('TOPPADDING', (0,0), (-1,-1), 1.8),
+        ('BOTTOMPADDING', (0,0), (-1,-1), 1.8),
     ]))
-    story.append(t_toc)
-    story.append(Spacer(1, 6))
+    story.append(t_meta)
+    story.append(Spacer(1, 3))
 
-    story.append(Paragraph("1. Executive Summary & Product Vision", style_h1))
+    story.append(Paragraph("1. Executive Summary & Problem Scope Boundaries", style_h1))
     story.append(Paragraph(
-        "<b>1.1 Product Vision:</b> RAGNext is an autonomous, version-aware enterprise document intelligence engine designed to eliminate superseded clause hallucinations. Unlike conventional vector-only RAG pipelines, RAGNext embeds temporal lifecycle states directly into document embeddings and metadata graphs, guaranteeing that employees and compliance officers receive authoritative, current-version information with verifiable page-level evidence.",
+        "<b>Core Principle:</b> <i>'Find the right information, from the right document version, with verifiable evidence.'</i><br/>"
+        "Conventional vector RAG systems treat all document chunks equally and retrieve answers based strictly on semantic cosine distance. When policies undergo revisions (e.g. Leave Policy v1.0 ➔ v2.0 ➔ v3.0), older superseded clauses frequently score higher similarity than active ones due to exact keyword density. RAGNext eliminates this vulnerability by binding temporal lifecycle states to document embeddings and enforcing pre-retrieval policy filters.",
         style_body
     ))
-    story.append(Paragraph(
-        "<b>1.2 Business Impact:</b> 100% elimination of outdated policy citations, 60% reduction in document audit turnaround time, complete defense against regulatory non-compliance fines, and zero cloud API dependency through local air-gapped LLM inference.",
-        style_body
-    ))
-    story.append(Spacer(1, 4))
 
-    story.append(Paragraph("2. Problem Statement & Scope Boundaries", style_h1))
     scope_data = [
-        [Paragraph("Scope Area", style_table_header), Paragraph("In-Scope (Current Release v1.0)", style_table_header), Paragraph("Out-of-Scope (Future Releases)", style_table_header)],
-        [Paragraph("Document Formats", style_table_cell_bold), Paragraph("PDF, DOCX, TXT, Markdown with page-aware extraction.", style_table_cell), Paragraph("Scanned raster images, audio/video transcripts.", style_table_cell)],
-        [Paragraph("Version Lifecycle", style_table_cell_bold), Paragraph("DRAFT, ACTIVE, SUPERSEDED, ARCHIVED states with auto-transitions.", style_table_cell), Paragraph("Git-style three-way file merging of conflicting clauses.", style_table_cell)],
-        [Paragraph("Retrieval Logic", style_table_cell_bold), Paragraph("Pre-retrieval temporal filtering, explicit historical intent routing.", style_table_cell), Paragraph("Cross-lingual translation of foreign language policies.", style_table_cell)],
-        [Paragraph("Inference & Storage", style_table_cell_bold), Paragraph("Local Ollama (llama3.2 + nomic-embed-text), SQLite, local vector store.", style_table_cell), Paragraph("Third-party cloud AI APIs (OpenAI/Anthropic) to maintain sovereignty.", style_table_cell)],
+        [Paragraph("Scope Dimension", style_th), Paragraph("In-Scope for Release v1.0 (Hackathon MVP)", style_th), Paragraph("Out-of-Scope (Future Enterprise Roadmap)", style_th)],
+        [Paragraph("Document Formats", style_td_bold), Paragraph("PDF (page-aware text extraction), DOCX (mammoth), TXT, and Markdown up to 25 MB.", style_td), Paragraph("Scanned raster images requiring heavy OCR pipelines; audio/video transcripts.", style_td)],
+        [Paragraph("Lifecycle States", style_td_bold), Paragraph("ACTIVE, SUPERSEDED, DRAFT, ARCHIVED with automatic lineage state transitions.", style_td), Paragraph("Git-style three-way branch merging of conflicting document text.", style_td)],
+        [Paragraph("Retrieval Logic", style_td_bold), Paragraph("Pre-retrieval temporal filtering, historical version routing, and conflict sentinel detection.", style_td), Paragraph("Cross-lingual translation of foreign language legal policies.", style_td)],
+        [Paragraph("Inference & Storage", style_td_bold), Paragraph("100% offline local inference via Ollama (llama3.2 + nomic-embed-text), SQLite/Postgres.", style_td), Paragraph("Cloud-hosted commercial AI APIs (OpenAI/Anthropic) to ensure air-gapped sovereignty.", style_td)]
     ]
-    t_scope = Table(scope_data, colWidths=[90, 215, 218])
+    t_scope = Table(scope_data, colWidths=[90, 220, 221])
     t_scope.setStyle(TableStyle([
         ('BACKGROUND', (0,0), (-1,0), GREEN_DARK),
-        ('BOX', (0,0), (-1,-1), 0.6, BORDER_COLOR),
+        ('BOX', (0,0), (-1,-1), 0.5, BORDER_COLOR),
         ('INNERGRID', (0,0), (-1,-1), 0.4, BORDER_COLOR),
-        ('TOPPADDING', (0,0), (-1,-1), 2.5),
-        ('BOTTOMPADDING', (0,0), (-1,-1), 2.5),
-        ('ROWBACKGROUNDS', (0,1), (-1,-1), [WHITE, BG_LIGHT]),
+        ('TOPPADDING', (0,0), (-1,-1), 2.0),
+        ('BOTTOMPADDING', (0,0), (-1,-1), 2.0),
+        ('ROWBACKGROUNDS', (0,1), (-1,-1), [WHITE, BG_LIGHT])
     ]))
     story.append(t_scope)
-    story.append(PageBreak())
+    story.append(Spacer(1, 3))
 
-    # =========================================================================
-    # PAGE 3: USER PERSONAS & ARCHITECTURE
-    # =========================================================================
-    story.append(Paragraph("3. User Personas & System Workflows", style_h1))
-    persona_text = [
-        [Paragraph("Persona Profile", style_table_header), Paragraph("Goals & Responsibilities", style_table_header), Paragraph("RAGNext Solution Feature", style_table_header)],
-        [Paragraph("<b>Rajesh</b><br/>Compliance & Risk Auditor", style_table_cell), Paragraph("Audits historical policies; verifies clause validity at past incident dates; avoids legal penalties.", style_table_cell), Paragraph("Historical Version Query Mode; automatic active conflict sentinel; downloadable audit logs.", style_table_cell)],
-        [Paragraph("<b>Priya</b><br/>Knowledge Worker / Employee", style_table_cell), Paragraph("Needs rapid, trusted answers to policy questions (remote work security, leave benefits).", style_table_cell), Paragraph("Default Active Pre-Filtering; returns clear badges (v3.0 [Active]) with verbatim page citations.", style_table_cell)],
-        [Paragraph("<b>Dev / IT Admin</b><br/>Systems Administrator", style_table_cell), Paragraph("Ensures system availability; protects company data privacy; avoids high cloud API costs.", style_table_cell), Paragraph("100% offline local inference via Ollama; zero external cloud data transfer.", style_table_cell)],
-    ]
-    t_per = Table(persona_text, colWidths=[110, 205, 208])
-    t_per.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,0), HEADER_BLUE),
-        ('BOX', (0,0), (-1,-1), 0.6, BORDER_COLOR),
-        ('INNERGRID', (0,0), (-1,-1), 0.4, BORDER_COLOR),
-        ('TOPPADDING', (0,0), (-1,-1), 3),
-        ('BOTTOMPADDING', (0,0), (-1,-1), 3),
-        ('ROWBACKGROUNDS', (0,1), (-1,-1), [WHITE, BG_LIGHT]),
-    ]))
-    story.append(t_per)
-    story.append(Spacer(1, 6))
-
-    story.append(Paragraph("4. System Architecture & Technical Specifications", style_h1))
-    story.append(Paragraph(
-        "RAGNext employs a decoupled, three-tier architecture ensuring high throughput, modularity, and zero cloud dependency:",
-        style_body
-    ))
-
+    story.append(Paragraph("2. Decoupled 3-Tier System Architecture & Technology Stack", style_h1))
     arch_data = [
-        [Paragraph("Tier", style_table_header), Paragraph("Technology Component", style_table_header), Paragraph("Operational Function", style_table_header)],
-        [Paragraph("Presentation Tier", style_table_cell_bold), Paragraph("React 18 + Vite + Bootstrap 5 + Lucide", style_table_cell), Paragraph("Responsive dashboard, document library, version graph viewer, and AI chat with citation cards.", style_table_cell)],
-        [Paragraph("Application Tier", style_table_cell_bold), Paragraph("Node.js 18+ / Express.js (ES Modules)", style_table_cell), Paragraph("REST API gateway, multipart document parser, temporal filter engine, and conflict detector.", style_table_cell)],
-        [Paragraph("Parsing Engine", style_table_cell_bold), Paragraph("pdf-parse, mammoth (DOCX), text/markdown", style_table_cell), Paragraph("Page-aware coordinate extraction, 500-char semantic chunking with 100-char overlap.", style_table_cell)],
-        [Paragraph("Metadata Storage", style_table_cell_bold), Paragraph("SQLite / PostgreSQL (Dual Adapter)", style_table_cell), Paragraph("Relational integrity for document groups, versions, statuses, and audit event logs.", style_table_cell)],
-        [Paragraph("Vector Store", style_table_cell_bold), Paragraph("Embedded Persistent Vector DB / ChromaDB", style_table_cell), Paragraph("High-speed cosine distance calculation with pre-retrieval version ID filtering.", style_table_cell)],
-        [Paragraph("Inference Engine", style_table_cell_bold), Paragraph("Ollama (llama3.2 + nomic-embed-text)", style_table_cell), Paragraph("Local 768-dim embeddings and conversational grounded synthesis with deterministic fallback.", style_table_cell)],
+        [Paragraph("Architecture Layer", style_th), Paragraph("Technology Choice", style_th), Paragraph("Technical Role & Rationale", style_th)],
+        [Paragraph("Presentation Tier", style_td_bold), Paragraph("React 18 + Vite + Bootstrap 5 + Lucide Icons", style_td), Paragraph("Snappy Virtual DOM updates, responsive grid, real-time citation cards, and visual revision trees.", style_td)],
+        [Paragraph("API Gateway & Logic", style_td_bold), Paragraph("Node.js 18+ / Express.js (ES Modules)", style_td), Paragraph("Asynchronous non-blocking I/O for concurrent document uploads, chunking, and REST query routing.", style_td)],
+        [Paragraph("Document Ingestion", style_td_bold), Paragraph("pdf-parse (page hook) + mammoth (DOCX) + Multer", style_td), Paragraph("Page-coordinate extraction, cryptographic upload hashing (`doc_<timestamp>_<hash>`), and traversal defense.", style_td)],
+        [Paragraph("Chunking Engine", style_td_bold), Paragraph("Context-Preserving Semantic Chunker", style_td), Paragraph("Splits text into 500-char segments with 100-char overlap, attaching source page number and version ID.", style_td)],
+        [Paragraph("Metadata Database", style_td_bold), Paragraph("PostgreSQL Adapter + Local Persistent Store Fallback", style_td), Paragraph("Relational integrity for revision trees; automatic zero-friction fallback to disk JSON/SQLite for hackathons.", style_td)],
+        [Paragraph("Vector Store", style_td_bold), Paragraph("Embedded Persistent Vector DB (Chroma-spec)", style_td), Paragraph("In-memory cosine ranking with disk persistence; supports hard metadata filtering on version lifecycle.", style_td)],
+        [Paragraph("AI Inference Engine", style_td_bold), Paragraph("Ollama (llama3.2) + nomic-embed-text", style_td), Paragraph("100% offline air-gapped dense embeddings and chat synthesis with zero cloud telemetry or SaaS fees.", style_td)],
+        [Paragraph("Fail-Safe Fallback", style_td_bold), Paragraph("Deterministic Grounded Extractive Synthesizer", style_td), Paragraph("Guarantees 100% service uptime: deterministically extracts verified excerpts if LLM is offline.", style_td)]
     ]
-    t_arch = Table(arch_data, colWidths=[90, 180, 253])
+    t_arch = Table(arch_data, colWidths=[90, 165, 276])
     t_arch.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,0), GREEN_DARK),
-        ('BOX', (0,0), (-1,-1), 0.6, BORDER_COLOR),
+        ('BACKGROUND', (0,0), (-1,0), HEADER_BLUE),
+        ('BOX', (0,0), (-1,-1), 0.5, BORDER_COLOR),
         ('INNERGRID', (0,0), (-1,-1), 0.4, BORDER_COLOR),
-        ('TOPPADDING', (0,0), (-1,-1), 2.6),
-        ('BOTTOMPADDING', (0,0), (-1,-1), 2.6),
-        ('ROWBACKGROUNDS', (0,1), (-1,-1), [WHITE, BG_LIGHT]),
+        ('TOPPADDING', (0,0), (-1,-1), 2.0),
+        ('BOTTOMPADDING', (0,0), (-1,-1), 2.0),
+        ('ROWBACKGROUNDS', (0,1), (-1,-1), [WHITE, BG_LIGHT])
     ]))
     story.append(t_arch)
+
+    # END OF PAGE 1
     story.append(PageBreak())
 
     # =========================================================================
-    # PAGE 4: FUNCTIONAL REQUIREMENTS (MoSCoW)
+    # PAGE 2: FUNCTIONAL (MoSCoW) & NON-FUNCTIONAL REQUIREMENTS
     # =========================================================================
-    story.append(Paragraph("5. Functional Requirements (MoSCoW Matrix)", style_h1))
-    
+    story.append(Paragraph("3. Functional Requirements (MoSCoW Matrix)", style_h1))
     fr_data = [
-        [Paragraph("ID", style_table_header), Paragraph("Priority", style_table_header), Paragraph("Functional Requirement", style_table_header), Paragraph("Detailed Acceptance Criteria", style_table_header)],
-        [Paragraph("FR-01", style_table_cell_bold), Paragraph("MUST", style_table_cell_bold), Paragraph("Multi-Format Ingestion", style_table_cell), Paragraph("Ingests PDF, DOCX, TXT up to 25 MB; generates SHA-256 checksum and preserves page boundaries.", style_table_cell)],
-        [Paragraph("FR-02", style_table_cell_bold), Paragraph("MUST", style_table_cell_bold), Paragraph("Document Grouping", style_table_cell), Paragraph("Associates multiple versions into a unified parent group (e.g., 'Remote Work Security Policy').", style_table_cell)],
-        [Paragraph("FR-03", style_table_cell_bold), Paragraph("MUST", style_table_cell_bold), Paragraph("Lifecycle Management", style_table_cell), Paragraph("Supports ACTIVE, SUPERSEDED, DRAFT, ARCHIVED states; transitions older versions when promoted.", style_table_cell)],
-        [Paragraph("FR-04", style_table_cell_bold), Paragraph("MUST", style_table_cell_bold), Paragraph("Context-Aware Chunking", style_table_cell), Paragraph("Splits text into 500-char chunks with 100-char overlap; attaches page_number and version_id.", style_table_cell)],
-        [Paragraph("FR-05", style_table_cell_bold), Paragraph("MUST", style_table_cell_bold), Paragraph("Vector Embeddings", style_table_cell), Paragraph("Embeds chunks via local Ollama (nomic-embed-text) with fallback token frequency vectors.", style_table_cell)],
-        [Paragraph("FR-06", style_table_cell_bold), Paragraph("MUST", style_table_cell_bold), Paragraph("Temporal Pre-Filter", style_table_cell), Paragraph("Eliminates non-active versions from retrieval candidate set before cosine distance ranking.", style_table_cell)],
-        [Paragraph("FR-07", style_table_cell_bold), Paragraph("MUST", style_table_cell_bold), Paragraph("Historical Query Routing", style_table_cell), Paragraph("Detects queries targeting historical revisions (e.g. 'in v1.0') and routes retrieval accordingly.", style_table_cell)],
-        [Paragraph("FR-08", style_table_cell_bold), Paragraph("MUST", style_table_cell_bold), Paragraph("Verifiable Citations", style_table_cell), Paragraph("Returns document name, version tag, page number, and verbatim excerpt for every synthesized claim.", style_table_cell)],
-        [Paragraph("FR-09", style_table_cell_bold), Paragraph("MUST", style_table_cell_bold), Paragraph("Conflict Sentinel", style_table_cell), Paragraph("Flags a prominent alert when multiple active policies coexist within the same group.", style_table_cell)],
-        [Paragraph("FR-10", style_table_cell_bold), Paragraph("MUST", style_table_cell_bold), Paragraph("Missing Evidence Gate", style_table_cell), Paragraph("Returns explicit insufficient evidence status if similarity score < 0.45 or query is out-of-scope.", style_table_cell)],
-        [Paragraph("FR-11", style_table_cell_bold), Paragraph("SHOULD", style_table_cell_bold), Paragraph("1-Click Seed Dataset", style_table_cell), Paragraph("Dashboard button instantly loads Leave Policy and Remote Security Policy test suites.", style_table_cell)],
-        [Paragraph("FR-12", style_table_cell_bold), Paragraph("SHOULD", style_table_cell_bold), Paragraph("Audit Telemetry Log", style_table_cell), Paragraph("Records query string, retrieved chunk IDs, cited versions, latency, and timestamp to audit store.", style_table_cell)],
-        [Paragraph("FR-13", style_table_cell_bold), Paragraph("COULD", style_table_cell_bold), Paragraph("Side-by-Side Diff View", style_table_cell), Paragraph("Interactive UI diff showing clause additions, removals, and changes between two revisions.", style_table_cell)],
+        [Paragraph("ID", style_th), Paragraph("Pri.", style_th), Paragraph("Requirement Title", style_th), Paragraph("Detailed Acceptance Criteria", style_th)],
+        [Paragraph("FR-01", style_td_center), Paragraph("MUST", style_td_bold), Paragraph("Multi-Format Ingestion", style_td_bold), Paragraph("Parses PDF, DOCX, TXT files up to 25MB; generates SHA-256 hash and sanitizes filename safely.", style_td)],
+        [Paragraph("FR-02", style_td_center), Paragraph("MUST", style_td_bold), Paragraph("Document Grouping", style_td_bold), Paragraph("Organizes revisions into logical parent groups (e.g. 'Leave Policy' ➔ v1.0, v2.0, v3.0).", style_td)],
+        [Paragraph("FR-03", style_td_center), Paragraph("MUST", style_td_bold), Paragraph("SemVer & Lifecycle", style_td_bold), Paragraph("Parses SemVer tags; automatically transitions older active versions to SUPERSEDED when promoted.", style_td)],
+        [Paragraph("FR-04", style_td_center), Paragraph("MUST", style_td_bold), Paragraph("Page-Aware Chunking", style_td_bold), Paragraph("Splits documents into 500-char chunks with 100-char overlap, binding exact page numbers to metadata.", style_td)],
+        [Paragraph("FR-05", style_td_center), Paragraph("MUST", style_td_bold), Paragraph("Local Vector Embeddings", style_td_bold), Paragraph("Computes 768-dim embeddings via nomic-embed-text; fallback to deterministic 128-dim subword vectors.", style_td)],
+        [Paragraph("FR-06", style_td_center), Paragraph("MUST", style_td_bold), Paragraph("Pre-Retrieval Filter", style_td_bold), Paragraph("Restricts general policy search strictly to `status = 'ACTIVE'`, blocking superseded chunks completely.", style_td)],
+        [Paragraph("FR-07", style_td_center), Paragraph("MUST", style_td_bold), Paragraph("Historical Query Routing", style_td_bold), Paragraph("Identifies version intent (e.g. 'in v1.0') and routes retrieval to that version with a warning badge.", style_td)],
+        [Paragraph("FR-08", style_td_center), Paragraph("MUST", style_td_bold), Paragraph("Verifiable Citations", style_td_bold), Paragraph("Every answer must output document name, version tag, page number, and verbatim excerpt.", style_td)],
+        [Paragraph("FR-09", style_td_center), Paragraph("MUST", style_td_bold), Paragraph("Conflict Sentinel", style_td_bold), Paragraph("Flags a prominent alert when multiple active policies coexist in the same group, preventing silent blends.", style_td)],
+        [Paragraph("FR-10", style_td_center), Paragraph("MUST", style_td_bold), Paragraph("Missing Evidence Gate", style_td_bold), Paragraph("Returns explicit insufficient evidence status if similarity score < 0.45 or query is unanswerable.", style_td)],
+        [Paragraph("FR-11", style_td_center), Paragraph("SHOULD", style_td_bold), Paragraph("1-Click Seed Dataset", style_td_bold), Paragraph("Dashboard button instantly loads Leave Policy and Remote Security Policy revision test suites.", style_td)],
+        [Paragraph("FR-12", style_td_center), Paragraph("SHOULD", style_td_bold), Paragraph("Audit Telemetry Log", style_td_bold), Paragraph("Stores complete query string, cited version IDs, matched chunk IDs, latency, and timestamp.", style_td)],
+        [Paragraph("FR-13", style_td_center), Paragraph("COULD", style_td_bold), Paragraph("Visual Version Diff", style_td_bold), Paragraph("Interactive UI diff showing clause additions, removals, and changes between two revisions.", style_td)]
     ]
-    t_fr = Table(fr_data, colWidths=[32, 45, 145, 301])
+    t_fr = Table(fr_data, colWidths=[34, 40, 115, 342])
     t_fr.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,0), HEADER_BLUE),
-        ('BOX', (0,0), (-1,-1), 0.6, BORDER_COLOR),
+        ('BACKGROUND', (0,0), (-1,0), GREEN_DARK),
+        ('BOX', (0,0), (-1,-1), 0.5, BORDER_COLOR),
         ('INNERGRID', (0,0), (-1,-1), 0.4, BORDER_COLOR),
-        ('TOPPADDING', (0,0), (-1,-1), 2.2),
-        ('BOTTOMPADDING', (0,0), (-1,-1), 2.2),
+        ('TOPPADDING', (0,0), (-1,-1), 1.9),
+        ('BOTTOMPADDING', (0,0), (-1,-1), 1.9),
         ('ROWBACKGROUNDS', (0,1), (-1,-1), [WHITE, BG_LIGHT]),
         ('TEXTCOLOR', (1,1), (1,10), colors.HexColor("#991B1B")),
         ('TEXTCOLOR', (1,11), (1,12), colors.HexColor("#854D0E")),
         ('TEXTCOLOR', (1,13), (1,13), colors.HexColor("#3730A3")),
     ]))
     story.append(t_fr)
-    story.append(PageBreak())
+    story.append(Spacer(1, 3))
 
-    # =========================================================================
-    # PAGE 5: NON-FUNCTIONAL REQUIREMENTS & DATA SCHEMA
-    # =========================================================================
-    story.append(Paragraph("6. Non-Functional Requirements (NFR)", style_h1))
+    story.append(Paragraph("4. Non-Functional Engineering Requirements (NFR)", style_h1))
     nfr_data = [
-        [Paragraph("ID", style_table_header), Paragraph("Category", style_table_header), Paragraph("Target Metric", style_table_header), Paragraph("Validation Method", style_table_header)],
-        [Paragraph("NFR-01", style_table_cell_bold), Paragraph("Inference Latency", style_table_cell), Paragraph("< 3.5 seconds response time", style_table_cell), Paragraph("Benchmarked on local Ollama llama3.2 using 50 consecutive queries.", style_table_cell)],
-        [Paragraph("NFR-02", style_table_cell_bold), Paragraph("Retrieval Speed", style_table_cell), Paragraph("< 150 ms for 10,000 chunks", style_table_cell), Paragraph("Vector distance timing tracked in backend processing middleware.", style_table_cell)],
-        [Paragraph("NFR-03", style_table_cell_bold), Paragraph("Data Sovereignty", style_table_cell), Paragraph("100% Air-Gapped / Zero Cloud Outbound", style_table_cell), Paragraph("Network packet monitoring verifying zero outbound requests during inference.", style_table_cell)],
-        [Paragraph("NFR-04", style_table_cell_bold), Paragraph("Fault Tolerance", style_table_cell), Paragraph("100% Service Availability Fallback", style_table_cell), Paragraph("Automatic switch to deterministic extractive synthesis if Ollama is halted.", style_table_cell)],
-        [Paragraph("NFR-05", style_table_cell_bold), Paragraph("Security & Sanitization", style_table_cell), Paragraph("Cryptographic file hashes; no path traversal", style_table_cell), Paragraph("Path sanitization tests preventing '../' injection in upload routes.", style_table_cell)],
+        [Paragraph("ID", style_th), Paragraph("NFR Category", style_th), Paragraph("Engineering Target Metric", style_th), Paragraph("Verification & Validation Procedure", style_th)],
+        [Paragraph("NFR-01", style_td_center), Paragraph("Inference Latency", style_td_bold), Paragraph("< 2.5s (Extractive); < 4.0s (Ollama)", style_td), Paragraph("Benchmarked on standard developer CPU/GPU across 50 consecutive queries.", style_td)],
+        [Paragraph("NFR-02", style_td_center), Paragraph("Retrieval Speed", style_td_bold), Paragraph("< 150 ms across 10,000 chunks", style_td), Paragraph("In-memory vector cosine distance timing tracked via backend performance middleware.", style_td)],
+        [Paragraph("NFR-03", style_td_center), Paragraph("Air-Gapped Security", style_td_bold), Paragraph("Zero External Cloud Data Outbound", style_td), Paragraph("Packet monitoring confirming zero outbound HTTP requests to external AI APIs.", style_td)],
+        [Paragraph("NFR-04", style_td_center), Paragraph("High Availability", style_td_bold), Paragraph("100% Service Uptime Fallback", style_td), Paragraph("Automatic fallback to deterministic extractive synthesizer if Ollama daemon halts.", style_td)],
+        [Paragraph("NFR-05", style_td_center), Paragraph("Storage Sanitization", style_td_bold), Paragraph("Zero Path Traversal / MIME-sniffed", style_td), Paragraph("Automated path sanitization tests preventing `../` directory injection attacks.", style_td)],
+        [Paragraph("NFR-06", style_td_center), Paragraph("Evidence Grounding", style_td_bold), Paragraph("> 95% Verified Citation Accuracy", style_td), Paragraph("Factuality benchmark comparing synthesized claims to verbatim source document excerpts.", style_td)]
     ]
-    t_nfr = Table(nfr_data, colWidths=[40, 95, 140, 248])
+    t_nfr = Table(nfr_data, colWidths=[38, 90, 140, 263])
     t_nfr.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,0), GREEN_DARK),
-        ('BOX', (0,0), (-1,-1), 0.6, BORDER_COLOR),
+        ('BACKGROUND', (0,0), (-1,0), HEADER_BLUE),
+        ('BOX', (0,0), (-1,-1), 0.5, BORDER_COLOR),
         ('INNERGRID', (0,0), (-1,-1), 0.4, BORDER_COLOR),
-        ('TOPPADDING', (0,0), (-1,-1), 2.5),
-        ('BOTTOMPADDING', (0,0), (-1,-1), 2.5),
-        ('ROWBACKGROUNDS', (0,1), (-1,-1), [WHITE, BG_LIGHT]),
+        ('TOPPADDING', (0,0), (-1,-1), 2.0),
+        ('BOTTOMPADDING', (0,0), (-1,-1), 2.0),
+        ('ROWBACKGROUNDS', (0,1), (-1,-1), [WHITE, BG_LIGHT])
     ]))
     story.append(t_nfr)
-    story.append(Spacer(1, 6))
 
-    story.append(Paragraph("7. Data Model & Database Schema", style_h1))
-    story.append(Paragraph(
-        "RAGNext structures enterprise documents into an explicit relational hierarchy ensuring temporal integrity and cascade-safe updates:",
-        style_body
-    ))
-
-    schema_data = [
-        [Paragraph("Table Name", style_table_header), Paragraph("Key Columns", style_table_header), Paragraph("Relationships & Constraints", style_table_header)],
-        [Paragraph("document_groups", style_table_cell_bold), Paragraph("id, name, category, description, created_at", style_table_cell), Paragraph("Top-level grouping container; 1-to-N with document_versions.", style_table_cell)],
-        [Paragraph("document_versions", style_table_cell_bold), Paragraph("id, group_id, version_string, status, effective_date, file_path, checksum, is_conflict", style_table_cell), Paragraph("Foreign Key ➔ document_groups(id) ON DELETE CASCADE. Enforces status lifecycle.", style_table_cell)],
-        [Paragraph("chunks", style_table_cell_bold), Paragraph("id, version_id, chunk_index, page_number, content, token_count, vector_id", style_table_cell), Paragraph("Foreign Key ➔ document_versions(id) ON DELETE CASCADE. Stores page coordinates.", style_table_cell)],
-        [Paragraph("audit_logs", style_table_cell_bold), Paragraph("id, query_text, version_intent, retrieved_chunk_ids, cited_version_ids, latency_ms", style_table_cell), Paragraph("Immutable query audit trail required by ISO 27001 and NIST 800-53 standards.", style_table_cell)],
-    ]
-    t_sch = Table(schema_data, colWidths=[95, 195, 233])
-    t_sch.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,0), HEADER_BLUE),
-        ('BOX', (0,0), (-1,-1), 0.6, BORDER_COLOR),
-        ('INNERGRID', (0,0), (-1,-1), 0.4, BORDER_COLOR),
-        ('TOPPADDING', (0,0), (-1,-1), 2.5),
-        ('BOTTOMPADDING', (0,0), (-1,-1), 2.5),
-        ('ROWBACKGROUNDS', (0,1), (-1,-1), [WHITE, BG_LIGHT]),
-    ]))
-    story.append(t_sch)
+    # END OF PAGE 2
     story.append(PageBreak())
 
     # =========================================================================
-    # PAGE 6: API SPECIFICATION & SCREEN WORKFLOWS
+    # PAGE 3: DATA SCHEMA, REST APIS & VERIFICATION MATRIX
     # =========================================================================
-    story.append(Paragraph("8. REST API Endpoints Specification", style_h1))
-    api_data = [
-        [Paragraph("Method", style_table_header), Paragraph("Endpoint Route", style_table_header), Paragraph("Payload / Parameters", style_table_header), Paragraph("Response Description", style_table_header)],
-        [Paragraph("GET", style_table_cell_bold), Paragraph("/api/health", style_table_cell), Paragraph("None", style_table_cell), Paragraph("Returns server, database adapter, and vector store health status.", style_table_cell)],
-        [Paragraph("GET", style_table_cell_bold), Paragraph("/api/documents", style_table_cell), Paragraph("None", style_table_cell), Paragraph("Lists all document groups, version counts, and active version details.", style_table_cell)],
-        [Paragraph("POST", style_table_cell_bold), Paragraph("/api/documents/upload", style_table_cell), Paragraph("file (multipart), groupId, version, status", style_table_cell), Paragraph("Parses document, extracts pages, chunks text, generates embeddings.", style_table_cell)],
-        [Paragraph("GET", style_table_cell_bold), Paragraph("/api/versions/:groupId", style_table_cell), Paragraph("groupId (path)", style_table_cell), Paragraph("Returns ordered revision lineage tree with conflict indicators.", style_table_cell)],
-        [Paragraph("PATCH", style_table_cell_bold), Paragraph("/api/versions/:id/status", style_table_cell), Paragraph("{ status: 'ACTIVE' | 'SUPERSEDED' }", style_table_cell), Paragraph("Updates version lifecycle state; propagates supersession.", style_table_cell)],
-        [Paragraph("POST", style_table_cell_bold), Paragraph("/api/chat", style_table_cell), Paragraph("{ query, groupId, versionFilter }", style_table_cell), Paragraph("Executes version-aware RAG, returns answer with exact citations.", style_table_cell)],
-        [Paragraph("POST", style_table_cell_bold), Paragraph("/api/demo/seed", style_table_cell), Paragraph("None", style_table_cell), Paragraph("Seeds multi-version Leave Policy and Remote Security Policy test files.", style_table_cell)],
+    story.append(Paragraph("5. Relational Data Model & Storage Schema", style_h1))
+    schema_data = [
+        [Paragraph("Entity Table", style_th), Paragraph("Key Fields & Types", style_th), Paragraph("Relational Integrity & Lifecycle Constraints", style_th)],
+        [Paragraph("document_groups", style_td_bold), Paragraph("id (UUID), name (TEXT), category (TEXT), description, created_at", style_td), Paragraph("Parent entity for version lineages; cascades deletion to versions.", style_td)],
+        [Paragraph("document_versions", style_td_bold), Paragraph("id (UUID), group_id (FK), version_string, status, effective_date, file_path, checksum", style_td), Paragraph("Enforces lifecycle status ('ACTIVE', 'SUPERSEDED', 'DRAFT', 'ARCHIVED'); SHA-256 integrity.", style_td)],
+        [Paragraph("document_chunks", style_td_bold), Paragraph("id (UUID), version_id (FK), chunk_index (INT), page_number (INT), content (TEXT), embedding", style_td), Paragraph("Stores exact document page numbers and chunk offsets for verifiable citations.", style_td)],
+        [Paragraph("audit_logs", style_td_bold), Paragraph("id (UUID), query_text, cited_version_id, confidence, engine_used, latency_ms, timestamp", style_td), Paragraph("Tamper-evident query telemetry for ISO 27001 and NIST SP 800-53 audit compliance.", style_td)]
     ]
-    t_api = Table(api_data, colWidths=[40, 115, 140, 228])
-    t_api.setStyle(TableStyle([
+    t_schema = Table(schema_data, colWidths=[95, 185, 251])
+    t_schema.setStyle(TableStyle([
         ('BACKGROUND', (0,0), (-1,0), GREEN_DARK),
-        ('BOX', (0,0), (-1,-1), 0.6, BORDER_COLOR),
+        ('BOX', (0,0), (-1,-1), 0.5, BORDER_COLOR),
         ('INNERGRID', (0,0), (-1,-1), 0.4, BORDER_COLOR),
-        ('TOPPADDING', (0,0), (-1,-1), 2.4),
-        ('BOTTOMPADDING', (0,0), (-1,-1), 2.4),
-        ('ROWBACKGROUNDS', (0,1), (-1,-1), [WHITE, BG_LIGHT]),
+        ('TOPPADDING', (0,0), (-1,-1), 2.0),
+        ('BOTTOMPADDING', (0,0), (-1,-1), 2.0),
+        ('ROWBACKGROUNDS', (0,1), (-1,-1), [WHITE, BG_LIGHT])
+    ]))
+    story.append(t_schema)
+    story.append(Spacer(1, 3))
+
+    story.append(Paragraph("6. REST API Endpoints Specification", style_h1))
+    api_data = [
+        [Paragraph("HTTP Method & Route", style_th), Paragraph("Request Payload / Headers", style_th), Paragraph("Response Behavior & Output Codes", style_th)],
+        [Paragraph("POST /api/documents/upload", style_td_bold), Paragraph("Multipart: file, group_id, version_string, status, effective_date", style_td), Paragraph("201 Created: Sanitizes file, chunks text, generates embeddings, updates lineage tree.", style_td)],
+        [Paragraph("GET /api/documents", style_td_bold), Paragraph("Query params: category, search (Optional)", style_td), Paragraph("200 OK: Returns list of document groups with active version number and total counts.", style_td)],
+        [Paragraph("GET /api/documents/:id/versions", style_td_bold), Paragraph("Path: Document Group ID", style_td), Paragraph("200 OK: Returns complete parent-child version lineage tree with lifecycle statuses.", style_td)],
+        [Paragraph("POST /api/chat/query", style_td_bold), Paragraph("JSON: { query: string, document_id?: string }", style_td), Paragraph("200 OK: Classifies intent, filters active version, generates answer with page citations.", style_td)],
+        [Paragraph("POST /api/demo/seed", style_td_bold), Paragraph("Empty body (Trigger)", style_td), Paragraph("200 OK: Loads Leave Policy and Remote Security Policy 3-version demo datasets.", style_td)],
+        [Paragraph("GET /api/health", style_td_bold), Paragraph("Empty body", style_td), Paragraph("200 OK: Reports connection status for PostgreSQL, SQLite fallback, and local Ollama.", style_td)]
+    ]
+    t_api = Table(api_data, colWidths=[120, 160, 251])
+    t_api.setStyle(TableStyle([
+        ('BACKGROUND', (0,0), (-1,0), HEADER_BLUE),
+        ('BOX', (0,0), (-1,-1), 0.5, BORDER_COLOR),
+        ('INNERGRID', (0,0), (-1,-1), 0.4, BORDER_COLOR),
+        ('TOPPADDING', (0,0), (-1,-1), 1.9),
+        ('BOTTOMPADDING', (0,0), (-1,-1), 1.9),
+        ('ROWBACKGROUNDS', (0,1), (-1,-1), [WHITE, BG_LIGHT])
     ]))
     story.append(t_api)
-    story.append(Spacer(1, 6))
+    story.append(Spacer(1, 3))
 
-    story.append(Paragraph("9. UI & Screen Workflows", style_h1))
-    screen_data = [
-        [Paragraph("Screen / Route", style_table_header), Paragraph("Key Visual Elements", style_table_header), Paragraph("User Actions Supported", style_table_header)],
-        [Paragraph("Dashboard (/)", style_table_cell_bold), Paragraph("KPI cards (Docs, Active, Superseded), 1-Click Demo Seed, quick activity feed.", style_table_cell), Paragraph("Quick status review, instantaneous demo dataset provisioning.", style_table_cell)],
-        [Paragraph("Document Library (/documents)", style_table_cell_bold), Paragraph("Grouped document cards, active version badges, format badges.", style_table_cell), Paragraph("Inspect revision histories, download files, delete outdated groups.", style_table_cell)],
-        [Paragraph("Ingestion Portal (/upload)", style_table_cell_bold), Paragraph("Drag-and-drop file zone, metadata inputs, parsing progress bar.", style_table_cell), Paragraph("Upload new document revisions, assign version numbers, set status.", style_table_cell)],
-        [Paragraph("AI Chat (/chat)", style_table_cell_bold), Paragraph("Conversational bubble stream, citation cards, conflict alert banner.", style_table_cell), Paragraph("Ask natural language questions; inspect exact version, page, and excerpt.", style_table_cell)],
-        [Paragraph("Version History (/versions/:id)", style_table_cell_bold), Paragraph("Interactive timeline (v1.0 ➔ v2.0 ➔ v3.0), status toggles.", style_table_cell), Paragraph("Promote draft to active, supersede versions, view clause diffs.", style_table_cell)],
-        [Paragraph("Settings (/settings)", style_table_cell_bold), Paragraph("Ollama connectivity pill, model selector, DB adapter indicator.", style_table_cell), Paragraph("Test local LLM connection, inspect vector chunk counts.", style_table_cell)],
+    story.append(Paragraph("7. Automated Test Suite & Hackathon Verification Matrix", style_h1))
+    test_data = [
+        [Paragraph("Test Case #", style_th), Paragraph("Verification Scenario", style_th), Paragraph("Input Query / Action", style_th), Paragraph("Pass / Fail Criteria", style_th)],
+        [Paragraph("TEST-01", style_td_center), Paragraph("Metadata Ingestion", style_td_bold), Paragraph("Upload 3-version Leave Policy", style_td), Paragraph("PASS: Creates v1.0, v2.0, v3.0 parent-child lineage in metadata DB.", style_td)],
+        [Paragraph("TEST-02", style_td_center), Paragraph("Active Version Query", style_td_bold), Paragraph("'What is the annual leave allowance?'", style_td), Paragraph("PASS: Returns 20 days citing v3.0 [Active], Page 1. Rejects v1.0/v2.0.", style_td)],
+        [Paragraph("TEST-03", style_td_center), Paragraph("Historical Query", style_td_bold), Paragraph("'What was the allowance in version 2?'", style_td), Paragraph("PASS: Returns 18 days citing v2.0 with [Historical Record] banner.", style_td)],
+        [Paragraph("TEST-04", style_td_center), Paragraph("Missing Evidence Gate", style_td_bold), Paragraph("'Where is maternity leave explained?'", style_td), Paragraph("PASS: Returns explicit Insufficient Evidence status without hallucinating.", style_td)],
+        [Paragraph("TEST-05", style_td_center), Paragraph("Conflict Sentinel Alert", style_td_bold), Paragraph("Simulate two concurrent active versions", style_td), Paragraph("PASS: Dispatches live Conflict Sentinel alert, halting single answer.", style_td)],
+        [Paragraph("TEST-06", style_td_center), Paragraph("Deletion Cleanup", style_td_bold), Paragraph("Delete document group", style_td), Paragraph("PASS: Cascades deletion across metadata DB and in-memory vector store.", style_td)]
     ]
-    t_scr = Table(screen_data, colWidths=[105, 205, 213])
-    t_scr.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,0), HEADER_BLUE),
-        ('BOX', (0,0), (-1,-1), 0.6, BORDER_COLOR),
-        ('INNERGRID', (0,0), (-1,-1), 0.4, BORDER_COLOR),
-        ('TOPPADDING', (0,0), (-1,-1), 2.4),
-        ('BOTTOMPADDING', (0,0), (-1,-1), 2.4),
-        ('ROWBACKGROUNDS', (0,1), (-1,-1), [WHITE, BG_LIGHT]),
-    ]))
-    story.append(t_scr)
-    story.append(PageBreak())
-
-    # =========================================================================
-    # PAGE 7: KPIS, TEST MATRIX & RELEASE MILESTONES
-    # =========================================================================
-    story.append(Paragraph("10. Success Metrics, Test Matrix & Release Milestones", style_h1))
-    
-    kpi_data = [
-        [Paragraph("Key Performance Indicator (KPI)", style_table_header), Paragraph("Benchmark Target", style_table_header), Paragraph("Observed Test Result", style_table_header)],
-        [Paragraph("Superseded Clause Citation Rate", style_table_cell_bold), Paragraph("0.0% (Zero Tolerance)", style_table_cell), Paragraph("0.0% — Active filter successfully rejects v1.0 and v2.0 clauses.", style_table_cell)],
-        [Paragraph("Grounded Citation Precision", style_table_cell_bold), Paragraph("100% with Page Coordinates", style_table_cell), Paragraph("100% — Every claim includes doc title, version, page, and quote.", style_table_cell)],
-        [Paragraph("Missing Evidence Rejection", style_table_cell_bold), Paragraph("0.0% Hallucinations on Unseen Data", style_table_cell), Paragraph("Verified — Reports 'insufficient evidence' for out-of-scope queries.", style_table_cell)],
-        [Paragraph("End-to-End Local Inference Speed", style_table_cell_bold), Paragraph("< 4.0 seconds per query", style_table_cell), Paragraph("1.2 - 2.8 seconds on Ollama llama3.2 (local host).", style_table_cell)],
-        [Paragraph("Offline Air-Gap Compliance", style_table_cell_bold), Paragraph("100% Zero External Requests", style_table_cell), Paragraph("Verified — Zero outbound telemetry or external cloud API calls.", style_table_cell)],
-    ]
-    t_kpi = Table(kpi_data, colWidths=[150, 150, 223])
-    t_kpi.setStyle(TableStyle([
+    t_test = Table(test_data, colWidths=[45, 105, 140, 241])
+    t_test.setStyle(TableStyle([
         ('BACKGROUND', (0,0), (-1,0), GREEN_DARK),
-        ('BOX', (0,0), (-1,-1), 0.6, BORDER_COLOR),
+        ('BOX', (0,0), (-1,-1), 0.5, BORDER_COLOR),
         ('INNERGRID', (0,0), (-1,-1), 0.4, BORDER_COLOR),
-        ('TOPPADDING', (0,0), (-1,-1), 3),
-        ('BOTTOMPADDING', (0,0), (-1,-1), 3),
-        ('ROWBACKGROUNDS', (0,1), (-1,-1), [WHITE, BG_LIGHT]),
+        ('TOPPADDING', (0,0), (-1,-1), 1.9),
+        ('BOTTOMPADDING', (0,0), (-1,-1), 1.9),
+        ('ROWBACKGROUNDS', (0,1), (-1,-1), [WHITE, BG_LIGHT])
     ]))
-    story.append(t_kpi)
-    story.append(Spacer(1, 8))
+    story.append(t_test)
 
-    story.append(Paragraph("<b>Release Milestones & Delivery Roadmap:</b>", style_body))
-    milestone_data = [
-        [Paragraph("Phase", style_table_header), Paragraph("Milestone Deliverables", style_table_header), Paragraph("Status", style_table_header)],
-        [Paragraph("Stage 1 (Framing)", style_table_cell_bold), Paragraph("Problem definition, root-cause analysis, market opportunity framing PPT.", style_table_cell), Paragraph("COMPLETED", style_table_cell_bold)],
-        [Paragraph("Stage 2 (MRD Submission)", style_table_cell_bold), Paragraph("Formal 9-page Market Requirements Document (PDF) with user personas and business model.", style_table_cell), Paragraph("COMPLETED", style_table_cell_bold)],
-        [Paragraph("Stage 2 (PRD & MVP Release)", style_table_cell_bold), Paragraph("Functional React 18 UI, Express backend, Ollama integration, automated RAG test suite, PRD.", style_table_cell), Paragraph("ACTIVE / OPERATIONAL", style_table_cell_bold)],
-        [Paragraph("Stage 3 (Enterprise Scale)", style_table_cell_bold), Paragraph("OCR scanner integration, enterprise SharePoint connectors, Active Directory RBAC.", style_table_cell), Paragraph("PLANNED ROADMAP", style_table_cell)],
-    ]
-    t_ms = Table(milestone_data, colWidths=[110, 313, 100])
-    t_ms.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,0), HEADER_BLUE),
-        ('BOX', (0,0), (-1,-1), 0.6, BORDER_COLOR),
-        ('INNERGRID', (0,0), (-1,-1), 0.4, BORDER_COLOR),
-        ('TOPPADDING', (0,0), (-1,-1), 3),
-        ('BOTTOMPADDING', (0,0), (-1,-1), 3),
-        ('ROWBACKGROUNDS', (0,1), (-1,-1), [WHITE, BG_LIGHT]),
-        ('TEXTCOLOR', (2,1), (2,3), GREEN_ACCENT),
-    ]))
-    story.append(t_ms)
-
+    # Build PDF
     doc.build(story, canvasmaker=NumberedCanvas)
-    print(f"Successfully generated PRD PDF at: {output_path}")
+    print(f"Successfully generated {output_path}")
 
 if __name__ == "__main__":
-    output_filename = "RAGNext_Stage2_PRD_Cyber_Knights.pdf"
-    if len(sys.argv) > 1:
-        output_filename = sys.argv[1]
-    create_prd_pdf(output_filename)
+    create_prd_pdf()
