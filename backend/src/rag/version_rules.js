@@ -14,8 +14,17 @@ export const versionRules = {
     if (
       qLower.includes('compare') ||
       qLower.includes('difference between') ||
-      qLower.includes('what changed between') ||
+      qLower.includes('what changed') ||
+      qLower.includes('how have') ||
+      qLower.includes('changed across') ||
+      qLower.includes('across all') ||
+      qLower.includes('all versions') ||
+      qLower.includes('all policy versions') ||
+      qLower.includes('evolution') ||
+      qLower.includes('evolve') ||
+      qLower.includes('over time') ||
       qLower.includes('versus') ||
+      qLower.includes(' vs ') ||
       (qLower.includes('version') && (qLower.includes(' and ') || qLower.includes(' to ')))
     ) {
       // Extract target version tags if present

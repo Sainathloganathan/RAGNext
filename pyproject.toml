@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cloud-commanders"
+version = "1.0.0"
+description = "Python client SDK for Cloud Commanders & Version-Aware RAG Services"
+readme = "README.md"
+authors = [{ name = "Cyber Knights" }]
+requires-python = ">=3.8"
+dependencies = [
+    "requests>=2.28.0"
+]
+
+[project.scripts]
+cloud-commanders = "cloud_commanders.cli:main"

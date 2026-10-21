@@ -1,0 +1,2 @@
+[console_scripts]
+cloud-commanders = cloud_commanders.cli:main
